@@ -18,7 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_no', 60)->nullable();
             $table->dateTime('due_date')->nullable();
             $table->dateTime('invoice_date')->nullable();
-            $table->string('jenis')->nullable();
+            $table->string('type')->nullable();
             $table->text('deskripsi', 64)->nullable();
             $table->text('address', 64)->nullable();
             $table->unsignedInteger('customer_id')->nullable();
@@ -35,13 +35,14 @@ class CreateInvoicesTable extends Migration
             $table->integer('harga')->nullable();
             $table->integer('discount')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('tahun')->nullable();
             $table->unsignedInteger('ship_id')->nullable();
             $table->dateTime('airtime_start')->nullable();
             $table->dateTime('airtime_end')->nullable();
-            $table->unsignedInteger('unit_price')->nullable();
+            $table->unsignedInteger('airtime_price')->nullable();
+            $table->unsignedInteger('transmiter_id')->nullable();
             $table->unsignedInteger('airtime')->nullable();
             $table->string('tanggal')->nullable();
+            $table->string('mark')->default(null);
             $table->timestamps();
         });
     }

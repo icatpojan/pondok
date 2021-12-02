@@ -25,10 +25,10 @@
                         <div class="form-group">
                             <label for="15">Type</label>
                             <select name="type" id="5 " class="form-control">
-                                <option {{ $customer->type == 'fishing' ? 'selected' : '' }} value="Chopper">Chopper</option>
-                                <option value="Personal">Personal</option>
-                                <option value="Vehicle">Vehicle</option>
-                                <option value="Vessel">Vessel</option>
+                                <option {{ $ship->type == 'Chopper' ? 'selected' : '' }} value="Chopper">Chopper</option>
+                                <option {{ $ship->type == 'Personal' ? 'selected' : '' }} value="Personal">Personal</option>
+                                <option {{ $ship->type == 'Vehicle' ? 'selected' : '' }} value="Vehicle">Vehicle</option>
+                                <option {{ $ship->type == 'Vessel' ? 'selected' : '' }} value="Vessel">Vessel</option>
                             </select>
                         </div>
                         <div class="form-group">

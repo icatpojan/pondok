@@ -28,9 +28,7 @@ class ShipController extends Controller
             'customer_id' => $request->customer_id,
             'sn' => $request->sn,
             'imei' => $request->imei,
-            'category' => $request->category,
             'type' => $request->type,
-            'status' => $request->status,
             'deskripsi' => $request->deskripsi,
             'airtime_start' => $request->airtime_start,
             'airtime_end' => date('Y-m-d', strtotime('+365 days', strtotime($request->airtime_start))),
@@ -48,9 +46,7 @@ class ShipController extends Controller
         $Ship->customer_id = $request->customer_id;
         $Ship->sn = $request->sn;
         $Ship->imei = $request->imei;
-        $Ship->category = $request->category;
         $Ship->type = $request->type;
-        $Ship->status = $request->status;
         $Ship->deskripsi = $request->deskripsi;
         $Ship->airtime_start = $request->airtime_start;
         $Ship->airtime_end = $request->airtime_end;

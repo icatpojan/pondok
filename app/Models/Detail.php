@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Detail extends Model
 {
     protected $guarded = [];
-    protected $dates = ['tgl_masuk'];
 
     public function status()
     {
@@ -20,5 +19,9 @@ class Product extends Model
     public function type()
     {
         return $this->belongsTo('App\Models\Type', 'type_id', 'id');
+    }
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product', 'produk_id', 'id');
     }
 }

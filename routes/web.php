@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/customer', 'CustomerController@store')->name('customer.store');
             Route::post('/customer/{id}', 'CustomerController@destroy')->name('customer.destroy');
             Route::post('/customer/update/{id}', 'CustomerController@update')->name('customer.update');
+            Route::post('/customershow', 'CustomerController@show')->name('customer.show');
 
             Route::post('/provincestore', 'CustomerController@provincestore')->name('province.store');
             Route::post('/regionstore', 'CustomerController@regionstore')->name('region.store');
@@ -51,49 +52,77 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/ship', 'ShipController@store')->name('ship.store');
             Route::post('/ship/{id}', 'ShipController@destroy')->name('ship.destroy');
             Route::post('/ship/update/{id}', 'ShipController@update')->name('ship.update');
+            Route::post('/shipshow', 'ShipController@show')->name('ship.show');
+        });
+        Route::group(['namespace' => 'Product'], function () {
 
+            Route::get('/category', 'CategoryController@index')->name('category.index');
+            Route::post('/category', 'CategoryController@store')->name('category.store');
+            Route::post('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
+            Route::post('/category/update/{id}', 'CategoryController@update')->name('category.update');
+
+            Route::get('/product', 'ProductController@index')->name('product.index');
+            Route::post('/product', 'ProductController@store')->name('product.store');
+            Route::post('/product/{id}', 'ProductController@destroy')->name('product.destroy');
+            Route::post('/product/update/{id}', 'ProductController@update')->name('product.update');
+            Route::get('/search', 'ProductController@search')->name('product.search');
+            Route::delete('/product-delete-all', 'ProductController@deleteAll')->name('product.deleteall');
+
+            Route::get('/status', 'StatusController@index')->name('status.index');
+            Route::post('/status', 'StatusController@store')->name('status.store');
+            Route::post('/status/{id}', 'StatusController@destroy')->name('status.destroy');
+            Route::post('/status/update/{id}', 'StatusController@update')->name('status.update');
+
+            Route::get('/type', 'TypeController@index')->name('type.index');
+            Route::post('/type', 'TypeController@store')->name('type.store');
+            Route::post('/type/{id}', 'TypeController@destroy')->name('type.destroy');
+            Route::post('/type/update/{id}', 'TypeController@update')->name('type.update');
+
+            Route::get('/trash', 'TrashController@index')->name('trash.index');
+            Route::get('/trash', 'TrashController@index')->name('trash.index');
+            Route::post('/restore/{id}', 'TrashController@restore')->name('trash.restore');
+            Route::post('/hapus/{id}', 'TrashController@hapus')->name('trash.hapus');
         });
 
-        Route::get('/category', 'CategoryController@index')->name('category.index');
-        Route::post('/category', 'CategoryController@store')->name('category.store');
-        Route::post('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
-        Route::post('/category/update/{id}', 'CategoryController@update')->name('category.update');
+        Route::group(['namespace' => 'Invoice'], function () {
+            Route::get('/mutasi', 'ReportController@mutasiindex')->name('mutasi.index');
+            Route::post('/mutasi/add', 'ReportController@mutasiadd')->name('mutasi.add');
+            Route::post('/massal', 'ReportController@mutasimass')->name('mutasi.mass');
+            Route::post('/mutasi/destroy/{sn}', 'ReportController@mutasidestroy')->name('mutasi.destroy');
 
-        Route::get('/product', 'productController@index')->name('product.index');
-        Route::post('/product', 'productController@store')->name('product.store');
-        Route::post('/product/{id}', 'productController@destroy')->name('product.destroy');
-        Route::post('/product/update/{id}', 'productController@update')->name('product.update');
+            Route::get('/invoice', 'InvoiceController@index')->name('invoice.index');
+            Route::post('/invoice', 'InvoiceController@store')->name('invoice.store');
+            Route::get('/cari', 'InvoiceController@cari')->name('invoice.cari');
+            Route::post('/invoice/add', 'InvoiceController@add')->name('invoice.add');
+            Route::post('/invoice/{id}', 'InvoiceController@destroy')->name('invoice.destroy');
+            Route::post('/invoice/update/{id}', 'InvoiceController@update')->name('invoice.update');
 
-        Route::get('/status', 'statusController@index')->name('status.index');
-        Route::post('/status', 'statusController@store')->name('status.store');
-        Route::post('/status/{id}', 'statusController@destroy')->name('status.destroy');
-        Route::post('/status/update/{id}', 'statusController@update')->name('status.update');
+            Route::post('/invoicestempel', 'InvoiceController@stempel')->name('invoice.stempel');
 
-        Route::get('/type', 'typeController@index')->name('type.index');
-        Route::post('/type', 'typeController@store')->name('type.store');
-        Route::post('/type/{id}', 'typeController@destroy')->name('type.destroy');
-        Route::post('/type/update/{id}', 'typeController@update')->name('type.update');
+            Route::get('/createInvoice', 'PlotController@create_invoice')->name('create.invoice');
+            Route::get('/createPerforma', 'PlotController@create_performa')->name('create.performa');
 
-        Route::get('/trash', 'trashController@index')->name('trash.index');
-        Route::post('/trash', 'trashController@store')->name('trash.store');
-        Route::post('/trash/{id}', 'trashController@destroy')->name('trash.destroy');
-        Route::post('/trash/update/{id}', 'trashController@update')->name('trash.update');
-
-        Route::get('/invoice', 'invoiceController@index')->name('invoice.index');
-        Route::post('/invoice', 'invoiceController@store')->name('invoice.store');
-        Route::post('/invoice/{id}', 'invoiceController@destroy')->name('invoice.destroy');
-        Route::post('/invoice/update/{id}', 'invoiceController@update')->name('invoice.update');
-
-        Route::get('/report', 'reportController@index')->name('report.index');
-        Route::post('/report', 'reportController@store')->name('report.store');
-        Route::post('/report/{id}', 'reportController@destroy')->name('report.destroy');
-        Route::post('/report/update/{id}', 'reportController@update')->name('report.update');
+            Route::post('/invoiceInfo', 'PlotController@invoiceInfostore')->name('invoiceInfo.store');
+            Route::get('/customerinfo', 'PlotController@customerInfo')->name('customerinfo');
+            Route::get('/transferinfo', 'PlotController@transferInfo')->name('transferinfo');
+            Route::get('/transferinfo', 'PlotController@transferInfo')->name('transferinfo');
+            Route::get('/airtimeinfo', 'PlotController@airtimeInfo')->name('airtimeinfo');
+            Route::get('/userinfo', 'PlotController@userInfo')->name('userinfo');
 
 
+            Route::post('/customerinfostore', 'PlotController@customerInfostore')->name('customerInfostore');
+            Route::post('/transferinfostore', 'PlotController@transferInfoStore')->name('transferInfoStore');
+            Route::post('/airtimeinfostore', 'PlotController@airtimeInfoStore')->name('airtimeinfo.store');
 
-        Route::get('/history', 'historyController@index')->name('history.index');
-        Route::post('/history', 'historyController@store')->name('history.store');
-        Route::post('/history/{id}', 'historyController@destroy')->name('history.destroy');
-        Route::post('/history/update/{id}', 'historyController@update')->name('history.update');
+            Route::get('/report', 'reportController@index')->name('report.index');
+            Route::post('/report', 'reportController@store')->name('report.store');
+            Route::post('/report/{id}', 'reportController@destroy')->name('report.destroy');
+            Route::post('/report/update/{id}', 'reportController@update')->name('report.update');
+        });
+
+
+
+
+        Route::get('/history', 'HistoryController@index')->name('history.index');
     });
 });
