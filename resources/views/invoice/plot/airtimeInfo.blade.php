@@ -39,7 +39,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Ship Name</label>
-                                    <select name="ship_name" id="ship_name" class="form-control haha">
+                                    <select class="js-example-basic-single form-control haha" name="ship_name"
+                                        id="ship_name">
                                         @foreach ($Ship as $ship)
                                             <option {{ $ship->name == $ship->name ? ' selected="selected"' : '' }}
                                                 value="{{ $ship->name }}">{{ $ship->name }}</option>
@@ -76,4 +77,13 @@
         </div>
     </div>
 
+@endsection
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
 @endsection
