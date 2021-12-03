@@ -3,6 +3,25 @@
     <h1 class="h3 mb-0 text-gray-800">Customer</h1>
 @endsection
 @section('css')
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    ::-webkit-input-placeholder,
+    :-ms-input-placeholder,
+    :-moz-placeholder,
+    ::-moz-placeholder {
+        text-align: center;
+    }
+</style>
 @endsection
 @section('content')
     <div class="card shadow mb-4">
@@ -98,6 +117,43 @@
                     });
             });
 
+            $('.npwp').keyup(function() {
+                const val = $(this).val();
+                const id = $(this).attr('id');
+
+                if(id == 'npwp_1' && val.length > 2) $(this).val(val.substring(0, 2));
+                if(id == 'npwp_2' && val.length > 3) $(this).val(val.substring(0, 3));
+                if(id == 'npwp_3' && val.length > 3) $(this).val(val.substring(0, 3));
+                if(id == 'npwp_4' && val.length > 1) $(this).val(val.substring(0, 1));
+                if(id == 'npwp_5' && val.length > 3) $(this).val(val.substring(0, 3));
+                if(id == 'npwp_6' && val.length > 3) $(this).val(val.substring(0, 3));
+
+                console.log(id == '1' && val.length > 2, id, val.length);
+            });
+
+            $('#npwp_6').blur(function() {
+                var ek = $('.npwp').map((_,el) => el.value).get()
+
+                $('[name="npwp"]').val(ek.join(''));
+            });
+
+            $('.npwp_edit').keyup(function() {
+                const val = $(this).val();
+                const id = $(this).attr('id');
+
+                if(id == 'npwp_edit_1' && val.length > 2) $(this).val(val.substring(0, 2));
+                if(id == 'npwp_edit_2' && val.length > 3) $(this).val(val.substring(0, 3));
+                if(id == 'npwp_edit_3' && val.length > 3) $(this).val(val.substring(0, 3));
+                if(id == 'npwp_edit_4' && val.length > 1) $(this).val(val.substring(0, 1));
+                if(id == 'npwp_edit_5' && val.length > 3) $(this).val(val.substring(0, 3));
+                if(id == 'npwp_edit_6' && val.length > 3) $(this).val(val.substring(0, 3));
+
+                console.log(id == '1' && val.length > 2, id, val.length);
+            }).blur(function() {
+                var ek = $('.npwp_edit').map((_,el) => el.value).get()
+
+                $('[name="npwp"]').val(ek.join(''));
+            });
         });
     </script>
 @endsection

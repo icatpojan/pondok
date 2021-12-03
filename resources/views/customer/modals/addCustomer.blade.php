@@ -65,8 +65,27 @@
                     </div>
                     <div class="form-group">
                         <label for="7">NPWP</label>
-                        <input required type="number" value="{{ old('npwp') }}" class="form-control" id="7"
-                            name="npwp">
+                        <input type="number" name="npwp" hidden>
+                        <div class="row">
+                            <div class="col">
+                                <input required type="number" value="{{ old('npwp_1') }}" class="form-control npwp" id="npwp_1" pattern="[0-9]{2}" placeholder="- -" required>
+                            </div>
+                            <div class="col">
+                                <input required type="number" value="{{ old('npwp_2') }}" class="form-control npwp" id="npwp_2" pattern="[0-9]{3}"placeholder="- - -" required>
+                            </div>
+                            <div class="col">
+                                <input required type="number" value="{{ old('npwp_3') }}" class="form-control npwp" id="npwp_3" pattern="[0-9]{3}" placeholder="- - -" required>
+                            </div>
+                            <div class="col">
+                                <input required type="number" value="{{ old('npwp_4') }}" class="form-control npwp" id="npwp_4" pattern="[0-9]{1}"placeholder="-" required>
+                            </div>
+                            <div class="col">
+                                <input required type="number" value="{{ old('npwp_5') }}" class="form-control npwp" id="npwp_5" pattern="[0-9]{3}" placeholder="- - -" required>
+                            </div>
+                            <div class="col">
+                                <input required type="number" value="{{ old('npwp_6') }}" class="form-control npwp" id="npwp_6" pattern="[0-9]{3}" placeholder="- - -" required>
+                            </div>
+                        </div>
                         @if ($errors->has('npwp'))
                             <span class="text-danger">{{ $errors->first('npwp') }}</span>
                         @endif

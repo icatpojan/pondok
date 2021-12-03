@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -74,8 +74,48 @@
                         </div>
                         <div class="form-group">
                             <label for="19">NPWP</label>
-                            <input value="{{ $customer->npwp }}" required type="number" class="form-control"
-                                id="19" name="npwp">
+                            <input value="{{ $customer->npwp }}" type="number" name="npwp" hidden>
+                            <div class="row">
+                                @if($npwp && $npwp[$customer->id])
+                                    <div class="col">
+                                        <input required type="number" value="{{ $npwp[$customer->id][0].$npwp[$customer->id][1] }}" class="form-control npwp_edit" id="npwp_edit_1" pattern="[0-9]{2}" placeholder="- -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" value="{{ $npwp[$customer->id][2].$npwp[$customer->id][3].$npwp[$customer->id][4] }}" class="form-control npwp_edit" id="npwp_edit_2" pattern="[0-9]{3}"placeholder="- - -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" value="{{ $npwp[$customer->id][5].$npwp[$customer->id][6].$npwp[$customer->id][7] }}" class="form-control npwp_edit" id="npwp_edit_3" pattern="[0-9]{3}" placeholder="- - -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" value="{{ $npwp[$customer->id][8] }}" class="form-control npwp_edit" id="npwp_edit_4" pattern="[0-9]{1}"placeholder="-" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" value="{{ $npwp[$customer->id][9].$npwp[$customer->id][10].$npwp[$customer->id][11] }}" class="form-control npwp_edit" id="npwp_edit_5" pattern="[0-9]{3}" placeholder="- - -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" value="{{ $npwp[$customer->id][12].$npwp[$customer->id][13].$npwp[$customer->id][14] }}" class="form-control npwp_edit" id="npwp_edit_6" pattern="[0-9]{3}" placeholder="- - -" required>
+                                    </div>
+                                @else
+                                    <div class="col">
+                                        <input required type="number" class="form-control npwp_edit" id="npwp_edit_1" pattern="[0-9]{2}" placeholder="- -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" class="form-control npwp_edit" id="npwp_edit_2" pattern="[0-9]{3}"placeholder="- - -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" class="form-control npwp_edit" id="npwp_edit_3" pattern="[0-9]{3}" placeholder="- - -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" class="form-control npwp_edit" id="npwp_edit_4" pattern="[0-9]{1}"placeholder="-" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" class="form-control npwp_edit" id="npwp_edit_5" pattern="[0-9]{3}" placeholder="- - -" required>
+                                    </div>
+                                    <div class="col">
+                                        <input required type="number" class="form-control npwp_edit" id="npwp_edit_6" pattern="[0-9]{3}" placeholder="- - -" required>
+                                    </div>
+                                @endif
+                            </div>
                             @if ($errors->has('npwp'))
                                 <span class="text-danger">{{ $errors->first('npwp') }}</span>
                             @endif

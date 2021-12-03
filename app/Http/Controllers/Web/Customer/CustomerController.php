@@ -16,7 +16,15 @@ class CustomerController extends Controller
         $Customer = Customer::all();
         $Province = Province::all();
         $title = "Customer";
-        return view('customer.customer', compact('title', 'Customer', 'Province'));
+
+        $npwp = [];
+        foreach($Customer as $cust){ // pecah npwp menjadi array
+            if($cust->npwp) {
+                $npwp[$cust->id] = str_split($cust->npwp); // masukkan kedalam $npwp dengan key berdasarkan id Customer
+            }
+        }
+
+        return view('customer.customer', compact('title', 'Customer', 'Province', 'npwp'));
     }
 
     public function store(Request $request)
