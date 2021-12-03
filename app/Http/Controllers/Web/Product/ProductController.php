@@ -54,6 +54,7 @@ class ProductController extends Controller
     {
         $Product = Product::create([
             'sn' => $request->sn,
+            'product_id' => $request->product_id,
             'imei' => $request->imei,
             'keterangan' => $request->keterangan,
             'price' => $request->price,
@@ -73,6 +74,7 @@ class ProductController extends Controller
     {
         $Product = Product::where('id', $id)->first();
         $Product->sn = $request->sn;
+        $Product->product_id = $request->product_id;
         $Product->imei = $request->imei;
         $Product->keterangan = $request->keterangan;
         $Product->price = $request->price;

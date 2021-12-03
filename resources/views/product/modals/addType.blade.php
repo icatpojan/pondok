@@ -27,10 +27,6 @@
                         <label for="3">Price</label>
                         <input required type="number" class="form-control" id="3" name="price">
                     </div>
-                    <div class="form-group">
-                        <label for="4">Stock</label>
-                        <input required type="number" class="form-control" id="4" name="stock">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

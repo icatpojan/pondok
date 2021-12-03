@@ -114,7 +114,8 @@ class PlotController extends Controller
     {
         $title = 'Transfer Info';
         $Ship = Ship::get(['name', 'id']);
-        return view('invoice.plot.airtimeInfo', compact('title', 'Ship'));
+        $Invoice = Invoice::where('mark', null)->first();
+        return view('invoice.plot.airtimeInfo', compact('title', 'Ship','Invoice'));
     }
 
     public function userInfo()

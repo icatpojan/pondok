@@ -18,7 +18,7 @@ class CreateTypesTable extends Migration
             $table->string('name', 32)->nullable()->default(null);
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('price');
-            $table->unsignedInteger('stock')->nullable();
+            $table->unsignedInteger('stock')->default(0);
             $table->timestamps();
         });
     }

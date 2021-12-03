@@ -17,6 +17,11 @@
                             <input value="{{ $product->sn }}" required type="text" class="form-control" id="13"
                                 name="sn">
                         </div>
+                         <div class="form-group">
+                            <label for="13">id</label>
+                            <input value="{{ $product->product_id }}" required type="text" class="form-control" id="13"
+                                name="sn">
+                        </div>
                         <div class="form-group">
                             <label for="14">Imei</label>
                             <input value="{{ $product->imei }}" required type="text" class="form-control" id="14"

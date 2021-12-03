@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Ship;
 use App\Models\Type;
 use App\User;
@@ -30,8 +31,8 @@ class HomeController extends Controller
         $title = 'Dashboard';
         $User = User::count();
         $Ship = Ship::count();
-        $Category = Category::count();
+        $Product = Product::count();
         $Type = Type::count();
-        return view('dashboard',compact('User','Ship','Category','Type','title'));
+        return view('dashboard',compact('User','Ship','Product','Type','title'));
     }
 }

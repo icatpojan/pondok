@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('price')->nullable();
             $table->dateTime('tgl_keluar')->nullable()->default(null);
             $table->unsignedInteger('entri_user_keluar')->nullable()->default(null);
+            $table->unsignedInteger('product_id')->nullable();
             $table->dateTime('tgl_edit')->nullable()->default(null);
             $table->unsignedInteger('user_edit')->nullable()->default(null);
             $table->dateTime('tgl_delete')->nullable()->default(null);

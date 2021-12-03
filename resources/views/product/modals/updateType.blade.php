@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add type</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update type</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -29,11 +29,6 @@
                             <label for="15">Price</label>
                             <input value="{{ $type->price }}" required type="number" class="form-control" id="15"
                                 name="price">
-                        </div>
-                        <div class="form-group">
-                            <label for="16">Stock</label>
-                            <input value="{{ $type->stock }}" required type="number" class="form-control" id="16"
-                                name="stock">
                         </div>
                     </div>
                     <div class="modal-footer">

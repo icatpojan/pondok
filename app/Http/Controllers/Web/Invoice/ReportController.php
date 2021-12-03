@@ -7,6 +7,7 @@ use App\Models\Detail;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ReportController extends Controller
 {
@@ -22,6 +23,20 @@ class ReportController extends Controller
         $Invoice = $Invoice->get();
         $title = "Report";
         return view('report.report', compact('title', 'Invoice'));
+    }
+
+    public function performa(Request $request)
+    {
+        $Invoice = Invoice::where('status', 'performa')->orderby('created_at', 'DESC');
+        if ($request->awal || $request->akhir) {
+            $Invoice->whereBetween('created_at', [$request->awal, $request->akhir]);
+        }
+        if ($request->awal) {
+            $Invoice->where('created_at', 'LIKE', "$request->awal%");
+        }
+        $Invoice = $Invoice->get();
+        $title = "Report";
+        return view('report.performa', compact('title', 'Invoice'));
     }
 
 

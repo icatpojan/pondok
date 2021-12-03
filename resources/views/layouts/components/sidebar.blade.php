@@ -82,7 +82,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Managenement Product:</h6>
                 <a class="collapse-item" href="{{ route('category.index') }}">Category</a>
-                <a class="collapse-item" href="{{ route('type.index') }}">Type</a>
+                <a class="collapse-item" href="{{ route('type.index') }}">Stok merek</a>
                 <a class="collapse-item" href="{{ route('status.index') }}">Status</a>
                 <a class="collapse-item" href="{{ route('product.index') }}">Product</a>
                 <a class="collapse-item" href="{{ route('mutasi.history') }}">Riwayat Mutasi</a>

@@ -14,6 +14,10 @@
                         <label for="1">SN</label>
                         <input required type="number" class="form-control" id="1" name="sn">
                     </div>
+                     <div class="form-group">
+                        <label for="1">id</label>
+                        <input required type="product_id" class="form-control" id="1" name="sn">
+                    </div>
                     <div class="form-group">
                         <label for="2">Imei</label>
                         <input required type="number" class="form-control" id="2" name="imei">

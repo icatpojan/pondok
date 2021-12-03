@@ -5,7 +5,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Daftar Invoice</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Performa</h6>
                 <a href="/invoice/export_excel" class="btn btn-success" target="_blank">EXPORT EXCEL</a>
             </div>
         </div>
@@ -73,7 +73,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Pencarian Invoice Berdasar Waktu</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Pencarian Performa Berdasar Waktu</h6>
             </div>
         </div>
         <div class="card-body">

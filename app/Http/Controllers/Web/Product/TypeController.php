@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\History;
 use App\Models\Product;
 use App\Models\Type;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,20 +15,23 @@ class TypeController extends Controller
 {
     public function index()
     {
-        $Category = Category::get(['id','name']);
+        $Warehouse = Warehouse::get();
+        // $Product = Product::where('status_id', 1)->orderBy('created_at')->get()->groupBy(function ($item) {
+        //     return $item->type->name;
+        // });
+        $Category = Category::get(['id', 'name']);
         $Type = Type::with('category')->get();
         foreach ($Type as $type) {
             $type = Type::where('id', $type->id)->first();
             $Produk = Product::where('status_id', 1)->where('type_id', $type->id)->count();
-
             $type->update([
                 'stock' => $Produk,
             ]);
         }
+        $Type = Type::with('category')->get();
         $title = "Type";
-        return view('product.type', compact('title', 'Type','Category'));
+        return view('product.type', compact('title', 'Type', 'Category', 'Warehouse'));
     }
-
     public function store(Request $request)
     {
         $Type = Type::create([

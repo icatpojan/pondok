@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('breadcrumb')
     <p class="mb-0 text-gray-800">
         <a href="{{ route('invoice.index') }}">Detail Info</a>/
