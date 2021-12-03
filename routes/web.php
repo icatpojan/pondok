@@ -127,7 +127,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/report/update/{id}', 'ReportController@update')->name('report.update');
             Route::post('/reportdelete/{id}', 'ReportController@delete')->name('report.delete');
 
-            Route::get('/reportperforma', 'ReportController@performa')->name('performa.index');
         });
 
 

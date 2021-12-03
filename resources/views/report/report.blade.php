@@ -27,42 +27,46 @@
                     </thead>
                     <tbody>
                         @foreach ($Invoice as $invoice)
-                            <tr>
-                                <td>{{ $invoice->id }}</td>
-                                <td>{{ $invoice->invoice_no }}</td>
-                                <td>{{ $invoice->jenis }}</td>
-                                <td>{{ $invoice->deskripsi }}</td>
-                                <td>{{ $invoice->address }}</td>
-                                <td>{{ $invoice->customer->name ?? $invoice->customer_id }}</td>
-                                <td>{{ $invoice->ship->name ?? $invoice->ship_id }}</td>
-                                <td>{{ $invoice->tanggal }}</td>
-                                <td>
-                                    <div class="d-flex flex-row bd-highlight mb-3">
-                                        <div class="p-1 bd-highlight">
-                                            <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
-                                                target="_blank">
-                                                @csrf
-                                                <button class="btn btn-outline-primary btn-sm" type="submit"><i
-                                                        class="fa fa-eye"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="p-1 bd-highlight">
-                                            <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
-                                                target="_blank">
-                                                @csrf
-                                                <button class="btn btn-outline-warning btn-sm" type="submit"><i
-                                                        class="fa fa-print"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="p-1 bd-highlight">
-                                            <form action="{{ route('report.delete', $invoice->id) }}" method="post">
-                                                @csrf
-                                                <button class="btn btn-outline-danger btn-sm" type="submit"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                        </div>
+                            @if ($condition)
+                                <tr class="table-success">
+                                @else
+                                <tr class="table-success">
+                            @endif
+                            <td>{{ $invoice->id }}</td>
+                            <td>{{ $invoice->invoice_no }}</td>
+                            <td>{{ $invoice->jenis }}</td>
+                            <td>{{ $invoice->deskripsi }}</td>
+                            <td>{{ $invoice->address }}</td>
+                            <td>{{ $invoice->customer->name ?? $invoice->customer_id }}</td>
+                            <td>{{ $invoice->ship->name ?? $invoice->ship_id }}</td>
+                            <td>{{ $invoice->tanggal }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-3">
+                                    <div class="p-1 bd-highlight">
+                                        <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
+                                            target="_blank">
+                                            @csrf
+                                            <button class="btn btn-outline-primary btn-sm" type="submit"><i
+                                                    class="fa fa-eye"></i></button>
+                                        </form>
                                     </div>
-                                </td>
+                                    <div class="p-1 bd-highlight">
+                                        <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
+                                            target="_blank">
+                                            @csrf
+                                            <button class="btn btn-outline-warning btn-sm" type="submit"><i
+                                                    class="fa fa-print"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="p-1 bd-highlight">
+                                        <form action="{{ route('report.delete', $invoice->id) }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-outline-danger btn-sm" type="submit"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>

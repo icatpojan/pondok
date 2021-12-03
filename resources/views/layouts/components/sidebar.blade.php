@@ -91,12 +91,21 @@
         </div>
     </li>
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('invoice.index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Buat Invoice</span></a>
+     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
+            aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Invoice</span>
+        </a>
+        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Management Report:</h6>
+                <a class="collapse-item" href="{{ route('invoice.index') }}">Buat Invoice</a>
+                <a class="collapse-item" href="{{ route('report.index') }}">List Invoice</a>
+            </div>
+        </div>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -109,7 +118,7 @@
                 <a class="collapse-item" href="{{ route('performa.index') }}">Performa</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Tables -->
     {{-- @if (Auth::user()->role == 'admin') --}}
