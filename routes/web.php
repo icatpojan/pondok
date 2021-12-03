@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-
+Route::get('/cetak/pdf/{id}', 'Web\Invoice\ReportController@cetak_pdf')->name('report.cetak');
 Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['namespace' => 'Web'], function () {
@@ -82,13 +82,15 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/trash', 'TrashController@index')->name('trash.index');
             Route::post('/restore/{id}', 'TrashController@restore')->name('trash.restore');
             Route::post('/hapus/{id}', 'TrashController@hapus')->name('trash.hapus');
+
+            Route::get('/mutasi', 'MutasiController@mutasiindex')->name('mutasi.index');
+            Route::get('/mutasihistory', 'MutasiController@history')->name('mutasi.history');
+            Route::post('/mutasi/add', 'MutasiController@mutasiadd')->name('mutasi.add');
+            Route::post('/massal', 'MutasiController@mutasimass')->name('mutasi.mass');
+            Route::post('/mutasi/destroy/{sn}', 'MutasiController@mutasidestroy')->name('mutasi.destroy');
         });
 
         Route::group(['namespace' => 'Invoice'], function () {
-            Route::get('/mutasi', 'ReportController@mutasiindex')->name('mutasi.index');
-            Route::post('/mutasi/add', 'ReportController@mutasiadd')->name('mutasi.add');
-            Route::post('/massal', 'ReportController@mutasimass')->name('mutasi.mass');
-            Route::post('/mutasi/destroy/{sn}', 'ReportController@mutasidestroy')->name('mutasi.destroy');
 
             Route::get('/invoice', 'InvoiceController@index')->name('invoice.index');
             Route::post('/invoice', 'InvoiceController@store')->name('invoice.store');
@@ -98,6 +100,11 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/invoice/update/{id}', 'InvoiceController@update')->name('invoice.update');
 
             Route::post('/invoicestempel', 'InvoiceController@stempel')->name('invoice.stempel');
+            Route::post('/updateprice/{id}', 'InvoiceController@updateprice')->name('update.price');
+            Route::post('/updatediscount', 'InvoiceController@updatediscount')->name('update.discount');
+            Route::post('/updatesign', 'InvoiceController@updatesign')->name('update.sign');
+            Route::post('/checkout', 'InvoiceController@checkout')->name('checkout');
+            Route::post('/checkoutperforma', 'InvoiceController@checkoutperforma')->name('checkout.performa');
 
             Route::get('/createInvoice', 'PlotController@create_invoice')->name('create.invoice');
             Route::get('/createPerforma', 'PlotController@create_performa')->name('create.performa');
@@ -114,10 +121,13 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/transferinfostore', 'PlotController@transferInfoStore')->name('transferInfoStore');
             Route::post('/airtimeinfostore', 'PlotController@airtimeInfoStore')->name('airtimeinfo.store');
 
-            Route::get('/report', 'reportController@index')->name('report.index');
-            Route::post('/report', 'reportController@store')->name('report.store');
-            Route::post('/report/{id}', 'reportController@destroy')->name('report.destroy');
-            Route::post('/report/update/{id}', 'reportController@update')->name('report.update');
+            Route::get('/reportinvoice', 'ReportController@index')->name('report.index');
+            Route::post('/report', 'ReportController@store')->name('report.store');
+            Route::post('/report/{id}', 'ReportController@destroy')->name('report.destroy');
+            Route::post('/report/update/{id}', 'ReportController@update')->name('report.update');
+            Route::post('/reportdelete/{id}', 'ReportController@delete')->name('report.delete');
+
+            Route::get('/reportperforma', 'ReportController@performa')->name('performa.index');
         });
 
 

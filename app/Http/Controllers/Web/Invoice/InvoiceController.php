@@ -15,7 +15,7 @@ class InvoiceController extends Controller
 {
     public function index(Request $request)
     {
-        $Product = Product::with(['warehouse', 'type', 'status']);
+        $Product = Product::with(['warehouse', 'type', 'status'])->where('status_id', 1);
         if ($request->warehouse) {
             $Product->where('warehouse_id', $request->warehouse);
         }
@@ -72,6 +72,73 @@ class InvoiceController extends Controller
         $Detail->delete();
         alert()->success('Sukses', 'Berhasil menghapus');
         return back();
+    }
+
+    public function updateprice(Request $request, $id)
+    {
+        $Detail = Detail::where('id', $id)->first();
+        $Detail->price = $request->price;
+        $Detail->update();
+        return redirect(url('userinfo'));
+    }
+
+    public function updatediscount(Request $request)
+    {
+        $Transaksi = Invoice::where('mark', null)->first();
+        $Transaksi->discount = $request->discount;
+        $Transaksi->persen = $request->persen;
+        $Transaksi->update();
+        return redirect(url('userinfo'));
+    }
+
+    public function updatesign(Request $request)
+    {
+        $Transaksi = Invoice::where('mark', null)->first();
+        $Transaksi->user_id = $request->user_id;
+        $Transaksi->update();
+        return redirect(url('userinfo'));
+    }
+
+    public function checkout()
+    {
+        $Transaksi = Invoice::where('mark', null)->first();
+        $Detail = Detail::where('transaksi_id', null)->get();
+        if ($Detail == []) {
+            alert()->error('Gagal', 'Silakan pilih barang terlebih dahulu');
+            return back();
+        }
+        $Transaksi->mark = 'end';
+        $Transaksi->update();
+        foreach ($Detail as  $value) {
+            $Product = Product::find($value->produk_id);
+            $value->transaksi_id = $Transaksi->id;
+            $value->status_id = 2;
+            $Product->status_id = 2;
+            $value->update();
+            $Product->update();
+        }
+        return redirect(url('invoice'));
+    }
+
+    public function checkoutperforma()
+    {
+        $Transaksi = Invoice::where('mark', null)->first();
+        $Detail = Detail::where('transaksi_id', null)->get();
+        if ($Detail == []) {
+            alert()->error('Gagal', 'Silakan pilih barang terlebih dahulu');
+            return back();
+        }
+        $Transaksi->mark = 'end';
+        $Transaksi->update();
+        foreach ($Detail as  $value) {
+            $Product = Product::find($value->produk_id);
+            $value->transaksi_id = $Transaksi->id;
+            $value->status_id = 2;
+            $Product->status_id = 3;
+            $value->update();
+            $Product->update();
+        }
+        return redirect(url('invoice'));
     }
 
     public function stempel(Request $request)

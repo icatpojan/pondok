@@ -2,10 +2,14 @@
 @section('breadcrumb')
     <p class="mb-0 text-gray-800">
         <a href="{{ route('invoice.index') }}">Detail Info</a>/
-        <a href="{{ route('create.invoice') }}">Invoice Info</a>/
+        Invoice Info/
         <a href="{{ route('customerinfo') }}"> Customer Info</a>/
-        <a href="{{ route('transferinfo') }}">Transfer Info</a>/
-        <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        @if ($Invoice->status == 'invoice')
+            <a href="{{ route('transferinfo') }}">Transfer Info</a>/
+        @endif
+        @if ($Invoice->type == 'AIRTIME' || $Invoice->type == 'VMS dan AIRTIME')
+            <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        @endif
         <a href="{{ route('userinfo') }}"> User Info</a>
     </p>
 @endsection
@@ -26,18 +30,22 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Invoice
                                     No:</span>
                             </div>
-                            <input type="text" name="invoice_no" id="nomer_invoice" value="{{ $Nomer }}"
+                            <input type="text" name="invoice_no" id="nomer_invoice" value="{{ $Invoice->invoice_no }}"
                                 class="form-control">
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-2">
                             <div class="input-group mb-2">
-                                <select name="stempel" id="stempel" name="type" class="form-control">
-                                    <option value="AIRTIME">AIRTIME</option>
-                                    <option value="CCTV">CCTV</option>
-                                    <option value="VMS" selected>VMS</option>
-                                    <option value="VMS dan AIRTIME" selected>VMS dan AIRTIME</option>
+                                <select id="stempel" name="type" class="form-control">
+                                    @foreach ($Category as $key => $value)
+                                        <option {{ $Invoice->type == $value->name ? 'selected' : '' }}
+                                            value="{{ $value->name }}">
+                                            {{ $value->name }}
+                                        </option>
+                                    @endforeach
+                                    <option {{ $Invoice->type == 'VMS dan AIRTIME' ? 'selected' : '' }}
+                                        value="VMS dan AIRTIME">VMS dan AIRTIME</option>
                                 </select>
                             </div>
                         </div>
@@ -59,9 +67,11 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Invoice
                                     Type:</span>
                             </div>
-                            <select name="jenis" class="form-control">
-                                <option value="Renewal">Renewal</option>
-                                <option value="New Unit">New Unit</option>
+                            <select name="category" class="form-control">
+                                <option {{ $Invoice->category == 'Renewal' ? 'selected' : '' }} value="Renewal">Renewal
+                                </option>
+                                <option {{ $Invoice->category == 'New Unit' ? 'selected' : '' }} value="New Unit">New Unit
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -74,7 +84,7 @@
                                     :</span>
                             </div>
                             <textarea placeholder="tambahkan keterangnjika ada.." required name="deskripsi"
-                                class="form-control" style="height: 90px"></textarea>
+                                class="form-control" style="height: 90px">{{ $Invoice->deskripsi }}</textarea>
                         </div>
                     </div>
                 </div>

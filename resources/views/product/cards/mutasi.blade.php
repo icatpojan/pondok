@@ -1,7 +1,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Produk Tersedia</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Produk</h6>
                 <!-- Button trigger modal -->
             </div>
         </div>
@@ -33,12 +33,12 @@
                                 <td>{{ $product->keterangan }}</td>
                                 <td>{{ $product->tgl_masuk->format('d F Y') }}</td>
                                 <td>{{ $product->type->price }}</td>
-                                <td>{{ $product->type->name ?? $product->type_id  }}</td>
+                                <td>{{ $product->type->name ?? $product->type_id }}</td>
                                 <td>{{ $product->warehouse->name ?? $product->warehouse_id }}</td>
-                                <td>{{ $product->status->name }}</td>
+                                <td>{{ $product->status->name ?? $product->status_id }}</td>
                                 <td class="row">
                                     <div class="col-md-1 ml-4">
-                                        <form action="{{ route('invoice.add') }}" method="post">
+                                        <form action="{{ route('mutasi.add') }}" method="post">
                                             @csrf
                                             <input type="hidden" value="{{ $product->sn }}" name="sn">
                                             <button class="btn btn-outline-success btn-sm" type="submit">Add</button>

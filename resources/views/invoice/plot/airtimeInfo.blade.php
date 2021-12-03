@@ -4,8 +4,10 @@
         <a href="{{ route('invoice.index') }}">Detail Info</a>/
         <a href="{{ route('create.invoice') }}">Invoice Info</a>/
         <a href="{{ route('customerinfo') }}"> Customer Info</a>/
-        <a href="{{ route('transferinfo') }}">Transfer Info</a>/
-        <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        @if ($Invoice->status == 'invoice')
+            <a href="{{ route('transferinfo') }}">Transfer Info</a>/
+        @endif
+        Airtime Info/
         <a href="{{ route('userinfo') }}"> User Info</a>
     </p>
 @endsection
@@ -47,8 +49,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Start Period</label>
-                                    <input type="date" name="airtime_start"
-                                        id="airtime_start" class="form-control" placeholder="Mulai Periode">
+                                    <input type="date" name="airtime_start" id="airtime_start" class="form-control"
+                                        placeholder="Mulai Periode">
                                 </div>
                             </div>
                             <div class="col">

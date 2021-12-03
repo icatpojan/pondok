@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputAddress">Address</label>
-                        <textarea name="" class="form-control" id="exampleInputAddress" required name="address" rows="3"></textarea>
+                        <textarea class="form-control" id="exampleInputAddress" required name="address" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputContact">Contact</label>

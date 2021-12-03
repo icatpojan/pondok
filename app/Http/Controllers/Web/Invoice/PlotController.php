@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Invoice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Detail;
 use App\Models\Invoice;
@@ -14,23 +15,35 @@ class PlotController extends Controller
 {
     public function create_invoice()
     {
+        $Invoice = Invoice::where('mark', null)->first();
         $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
         $noUrutAkhir = Invoice::max('id');
         if ($noUrutAkhir) {
             $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
         } else {
             $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+        }
+        if (!$Invoice) {
+            $Invoice = Invoice::create([
+                'invoice_no' => $Nomer,
+                'status' => 'invoice',
+            ]);
+        } else {
+            $Invoice->status = 'invoice';
+            $Invoice->update();
         }
         $Customer = Customer::get(['name', 'id']);
         $Ship = Ship::get(['name', 'id']);
         $User = User::get(['username', 'id']);
+        $Category = Category::get(['name']);
         $title = 'create invoice';
 
-        return view('invoice.createInvoice', compact('Nomer', 'Customer', 'User', 'Ship', 'title'));
+        return view('invoice.createInvoice', compact('Invoice', 'Category', 'Customer', 'User', 'Ship', 'title'));
     }
 
     public function create_performa()
     {
+        $Invoice = Invoice::where('mark', null)->first();
         $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
         $noUrutAkhir = Invoice::max('id');
         if ($noUrutAkhir) {
@@ -38,17 +51,32 @@ class PlotController extends Controller
         } else {
             $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
         }
-        return view('invoice.createPerforma', compact('Nomer'));
+        if (!$Invoice) {
+            $Invoice = Invoice::create([
+                'invoice_no' => $Nomer,
+            ]);
+        } else {
+            $Invoice->status = 'performa';
+            $Invoice->update();
+        }
+        $Customer = Customer::get(['name', 'id']);
+        $Ship = Ship::get(['name', 'id']);
+        $User = User::get(['username', 'id']);
+        $Category = Category::get(['name']);
+        $title = 'create invoice';
+
+        return view('invoice.createInvoice', compact('Invoice', 'Category', 'Customer', 'User', 'Ship', 'title'));
     }
 
     public function invoiceInfoStore(Request $request)
     {
-        $Transaksi = Invoice::create([
-            'invoice_no' => $request->invoice_no,
-            'invoice_date' => $request->invoice_date,
-            'deskripsi' => $request->description,
-            'type' => $request->type,
-        ]);
+        $Invoice = Invoice::where('mark', null)->first();
+        $Invoice->invoice_no = $request->invoice_no;
+        $Invoice->invoice_date = $request->invoice_date;
+        $Invoice->deskripsi = $request->deskripsi;
+        $Invoice->type = $request->type;
+        $Invoice->category = $request->category;
+        $Invoice->update();
 
         return redirect(url('/customerinfo'));
     }
@@ -57,7 +85,8 @@ class PlotController extends Controller
     {
         $title = 'Customer Info';
         $Customer = Customer::get(['name', 'id']);
-        return view('invoice.plot.customerInfo', compact('title', 'Customer'));
+        $Invoice = Invoice::where('mark', null)->first();
+        return view('invoice.plot.customerInfo', compact('title', 'Customer', 'Invoice'));
     }
 
     public function customerInfostore(Request $request)
@@ -67,6 +96,9 @@ class PlotController extends Controller
         $Transaksi->npwp = $request->npwp;
         $Transaksi->address = $request->address;
         $Transaksi->update();
+        if ($Transaksi->status == 'performa') {
+            return redirect(url('/userinfo'));
+        }
         return redirect(url('/transferinfo'));
     }
 
@@ -74,7 +106,8 @@ class PlotController extends Controller
     {
         $title = 'Transfer Info';
         $Customer = Customer::get(['name', 'id']);
-        return view('invoice.plot.transferInfo', compact('title', 'Customer'));
+        $Invoice = Invoice::where('mark', null)->first();
+        return view('invoice.plot.transferInfo', compact('title', 'Customer', 'Invoice'));
     }
 
     public function airtimeInfo()
@@ -88,8 +121,25 @@ class PlotController extends Controller
     {
         $title = 'User Info';
         $User = User::get(['username', 'id']);
-        $Detail = Detail::where('transaksi_id', null)->get();
-        return view('invoice.plot.userInfo', compact('title', 'User'));
+        $Invoice = Invoice::where('mark', null)->first();
+        $Detail = Detail::where('transaksi_id', null)->with(['type', 'warehouse', 'status'])->get();
+        $Price = 0;
+        foreach ($Detail as $Data) {
+            $Price = $Price + $Data->price;
+        }
+
+        $Invoice->total_harga = $Price;
+
+        if ($Invoice->persen == 'rupiah') {
+            $Invoice->harga_akhir = $Price - $Invoice->discount;
+        }
+
+        if ($Invoice->persen == 'persen') {
+            $Invoice->harga_akhir = $Price - $Price * $Invoice->discount / 100;
+        }
+        $Invoice->update();
+        $PPN = $Price + (($Price * 10) / 100);
+        return view('invoice.plot.userInfo', compact('title', 'User', 'Price', 'Detail', 'PPN', 'Invoice'));
     }
 
     public function transferInfostore(Request $request)

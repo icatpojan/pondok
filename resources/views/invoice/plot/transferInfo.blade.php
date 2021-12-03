@@ -1,13 +1,15 @@
 @extends('layouts.app')
 @section('breadcrumb')
-   <p class="mb-0 text-gray-800">
+    <p class="mb-0 text-gray-800">
         <a href="{{ route('invoice.index') }}">Detail Info</a>/
         <a href="{{ route('create.invoice') }}">Invoice Info</a>/
         <a href="{{ route('customerinfo') }}"> Customer Info</a>/
-        <a href="{{ route('transferinfo') }}">Transfer Info</a>/
-        <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        Transfer Info/
+        @if ($Invoice->type == 'AIRTIME' || $Invoice->type == 'VMS dan AIRTIME')
+            <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        @endif
         <a href="{{ route('userinfo') }}"> User Info</a>
-    </p>@endsection
+</p>@endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -25,16 +27,16 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Transfer date
                                     :</span>
                             </div>
-                            <input type="date" name="transfer_date" class="form-control" placeholder="geosat">
+                            <input type="date" value="{{ $Invoice->transfer_date }}" name="transfer_date" class="form-control" placeholder="geosat">
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <select name="bank" id="bank" class="form-control">
-                                <option value="BCA">BCA</option>
-                                <option value="BRI" selected>BRI</option>
-                                <option value="BNI">BNI</option>
-                                <option value="Mandiri">Mandiri</option>
+                                <option {{ $Invoice->bank == 'BCA' ? 'selected' : '' }} value="BCA">BCA</option>
+                                <option {{ $Invoice->bank == 'BRI' ? 'selected' : '' }} value="BRI" selected>BRI</option>
+                                <option {{ $Invoice->bank == 'BNI' ? 'selected' : '' }} value="BNI">BNI</option>
+                                <option {{ $Invoice->bank == 'Mandiri' ? 'selected' : '' }} value="Mandiri">Mandiri</option>
                             </select>
                         </div>
                     </div>
@@ -46,7 +48,7 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Transfer
                                     name:</span>
                             </div>
-                            <input name="transfer_name" type="text" class="form-control"
+                            <input value="{{ $Invoice->transfer_name }}" name="transfer_name" type="text" class="form-control"
                                 placeholder="nama pentransfer...">
                         </div>
                     </div>
@@ -56,7 +58,8 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Contact
                                     :</span>
                             </div>
-                            <input type="number" value="{{ old('contact') }}" name="contact" class="form-control  border-success">
+                            <input type="number" value="{{ $Invoice->contact }}" name="contact"
+                                class="form-control  border-success">
                         </div>
                         <small class="text-success">* boleh kosong</small>
                     </div>

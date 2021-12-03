@@ -17,11 +17,14 @@ class CreateMutasisTable extends Migration
             $table->id();
             $table->integer('sn')->unique();
             $table->string('imei', 15);
-            $table->string('keterangan', 124)->nullable();
-            $table->unsignedInteger('price');
+            $table->unsignedInteger('mark')->default(1);
             $table->unsignedInteger('type_id');
-            $table->unsignedInteger('warehouse_id');
+            $table->unsignedInteger('warehouse_from');
+            $table->unsignedInteger('warehouse_to')->nullable();
             $table->unsignedInteger('status_id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('reason',124)->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }

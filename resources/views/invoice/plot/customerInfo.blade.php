@@ -3,11 +3,15 @@
     <p class="mb-0 text-gray-800">
         <a href="{{ route('invoice.index') }}">Detail Info</a>/
         <a href="{{ route('create.invoice') }}">Invoice Info</a>/
-        <a href="{{ route('customerinfo') }}"> Customer Info</a>/
-        <a href="{{ route('transferinfo') }}">Transfer Info</a>/
-        <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        Customer Info/
+        @if ($Invoice->status == 'invoice')
+            <a href="{{ route('transferinfo') }}">Transfer Info</a>/
+        @endif
+        @if ($Invoice->type == 'AIRTIME' || $Invoice->type == 'VMS dan AIRTIME')
+            <a href="{{ route('airtimeinfo') }}">Airtime Info</a>/
+        @endif
         <a href="{{ route('userinfo') }}"> User Info</a>
-    </p>@endsection
+</p>@endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -30,7 +34,8 @@
                             <select name="customer_id" id="customer" class="form-control">
                                 <option value="">== Select Customer ==</option>
                                 @foreach ($Customer as $customer)
-                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                    <option {{ $Invoice->customer_id == $customer->id ? 'selected' : '' }}
+                                        value="{{ $customer->id }}">{{ $customer->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -40,8 +45,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">NPWP Number:</span>
                             </div>
-                            <input type="number" name="npwp" id="npwp" required class="form-control"
-                                placeholder="Masukkan Nomer NPWP">
+                            <input type="number" value="{{ $Invoice->npwp }}" name="npwp" id="npwp" required
+                                class="form-control" placeholder="Masukkan Nomer NPWP">
                         </div>
                     </div>
                 </div>
@@ -53,7 +58,7 @@
                                     :</span>
                             </div>
                             <textarea name="address" class="form-control" id="address" required
-                                style="height: 90px"></textarea>
+                                style="height: 90px">{{ $Invoice->address }}</textarea>
                         </div>
                     </div>
                 </div>
