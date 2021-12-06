@@ -48,16 +48,34 @@ class ReportController extends Controller
 
     public function cetak_pdf($id)
     {
-        $Invoice = Invoice::where('id', $id)->with(['customer', 'ship'])->first();
-        $Detail = Detail::where('transaksi_id', $Invoice->id)->with(['product'])->get();
+        $invoice = Invoice::where('id', $id)->with(['customer', 'ship'])->first();
+        $detail = Detail::where('transaksi_id', $invoice->id)->with(['product'])->get();
+
+        if ( ! is_null($invoice)) {
+            $invoice->airtime_start = date('D M Y', strtotime($invoice->airtime_start));
+            $invoice->airtime_end = date('D M Y', strtotime($invoice->airtime_end));
+        }
+
+        $subtotal = 0;
+        $total = 0;
+        $ppn = 0;
+
+        if ( ! is_null($detail)) {
+            foreach ($detail AS $item) {
+                $subtotal += $item->price;
+            }
+        }
+
+        $ppn = $subtotal > 0 ? (($subtotal / 100) * 10) : 0;
+        $total = $subtotal + $ppn;
 
         QrCode::format('png')
             ->merge('/public/img/qrcode.png', .3)
             ->size(420)
             ->margin(1)
-            ->generate('https://office.kapalpintar.co.id/cetak/pdf/1', base_path('public/pdf/1.png'));
+            ->generate(('https://office.kapalpintar.co.id/cetak/pdf/' . $invoice->id), base_path('public/pdf/qrcode/' . $invoice->id . '.png'));
 
-        $invoiceHtml = view('invoice', compact('Invoice', 'Detail'))->render();
+        $invoiceHtml = view('invoice', compact('invoice', 'detail', 'subtotal', 'ppn', 'total'))->render();
         $invoicePdf = $this->generate(
             $invoiceHtml, TRUE, 0, 100, 'FOLIO', array(
                 'left' => 0,
@@ -66,7 +84,7 @@ class ReportController extends Controller
             )
         );
 
-		$invoicePdf->Output($_SERVER['DOCUMENT_ROOT'] . 'pdf/test.pdf', 'F');
+		$invoicePdf->Output(base_path('public/pdf/' . $invoice->id . '.pdf'), 'F');
 		$invoicePdf->Output('Invoice.pdf', 'I');
     }
 
