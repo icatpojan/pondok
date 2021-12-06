@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="7">NPWP</label>
-                        <input required type="number" value="{{ old('npwp') }}" class="form-control" id="7" name="npwp">
+                        <input required type="text" value="{{ old('npwp') }}" class="form-control" id="7" name="npwp">
                         @if ($errors->has('npwp'))
                             <span class="text-danger">{{ $errors->first('npwp') }}</span>
                         @endif
@@ -70,14 +70,6 @@
                             name="phone">
                         @if ($errors->has('phone'))
                             <span class="text-danger">{{ $errors->first('phone') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="7">NPWP</label>
-                        <input required type="text" value="{{ old('npwp') }}" class="npwp form-control" id="7"
-                            name="npwp" placeholder="xx.xxx.xxx.x-xxx.xxx">
-                        @if ($errors->has('npwp'))
-                            <span class="text-danger">{{ $errors->first('npwp') }}</span>
                         @endif
                     </div>
                     <div class="form-group">
@@ -132,11 +124,17 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ url('public/vendor/jquery/inputmask.min.js') }}"></script>
     <script>
         $(function() {
             $(document).ready(function() {
                 $('.js-example-basic-single').select2();
+
+                $('#7').inputmask({
+                    mask: '99.999.999.9-999.999'
+                })
             });
+
             $('#province').on('change', function() {
                 axios.post('{{ route('province.store') }}', {
                         id: $(this).val()
@@ -161,7 +159,6 @@
                         })
                     });
             });
-
         });
     </script>
 @endsection

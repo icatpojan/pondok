@@ -91,9 +91,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ url('public/vendor/jquery/inputmask.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
+
+            $('#npwp').inputmask({
+                mask: '99.999.999.9-999.999'
+            })
         });
         $('#customer').on('change', function() {
             axios.post('{{ route('customer.show') }}', {

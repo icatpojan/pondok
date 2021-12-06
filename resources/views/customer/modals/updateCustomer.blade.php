@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label for="19">NPWP</label>
-                        <input value="{{ $Customer->npwp }}" required type="number" class="form-control" id="19"
+                        <input value="{{ $Customer->npwp }}" required type="text" class="form-control" id="19"
                             name="npwp">
                         @if ($errors->has('npwp'))
                             <span class="text-danger">{{ $errors->first('npwp') }}</span>
@@ -119,7 +119,7 @@
                                     value="{{ $region->region_id }}">{{ $region->region_name }}
                                 </option>
                             @endforeach
-                                <option {{ $customer->type == 'goverment' ? 'selected' : '' }} value="goverment">
+                                <option {{ $Customer->type == 'goverment' ? 'selected' : '' }} value="goverment">
                                     goverment</option>
                             </select>
                             @if ($errors->has('type'))
@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group">
                             <label for="16">Contact</label>
-                            <input value="{{ $customer->contact }}" required type="number" class="form-control"
+                            <input value="{{ $Customer->contact }}" required type="number" class="form-control"
                                 id="16" name="contact">
                             @if ($errors->has('contact'))
                                 <span class="text-danger">{{ $errors->first('contact') }}</span>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label for="17">Fax</label>
-                            <input value="{{ $customer->fax }}" required type="number" class="form-control" id="17"
+                            <input value="{{ $Customer->fax }}" required type="number" class="form-control" id="17"
                                 name="fax">
                             @if ($errors->has('fax'))
                                 <span class="text-danger">{{ $errors->first('fax') }}</span>
@@ -144,23 +144,15 @@
                         </div>
                         <div class="form-group">
                             <label for="18">Phone</label>
-                            <input value="{{ $customer->phone }}" required type="number" class="form-control"
+                            <input value="{{ $Customer->phone }}" required type="number" class="form-control"
                                 id="18" name="phone">
                             @if ($errors->has('phone'))
                                 <span class="text-danger">{{ $errors->first('phone') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="19">NPWP</label>
-                            <input value="{{ $customer->npwp }}" required type="text" class="npwp_edit form-control"
-                                id="19" name="npwp" placeholder="xx.xxx.xxx.x-xxx.xxx">
-                            @if ($errors->has('npwp'))
-                                <span class="text-danger">{{ $errors->first('npwp') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
                             <label for="20">Email</label>
-                            <input value="{{ $customer->email }}" required type="text" class="form-control" id="20"
+                            <input value="{{ $Customer->email }}" required type="text" class="form-control" id="20"
                                 name="email">
                             @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -190,20 +182,12 @@
                         </div>
                         <div class="form-group">
                             <label for="24">Kode pos</label>
-                            <input value="{{ $customer->kode_pos }}" required type="text" class="form-control"
+                            <input value="{{ $Customer->kode_pos }}" required type="text" class="form-control"
                                 id="24" name="kode_pos">
                             @if ($errors->has('kode_pos'))
                                 <span class="text-danger">{{ $errors->first('kode_pos') }}</span>
                             @endif
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="24">Kode pos</label>
-                        <input value="{{ $Customer->kode_pos }}" required type="text" class="form-control" id="24"
-                            name="kode_pos">
-                        @if ($errors->has('kode_pos'))
-                            <span class="text-danger">{{ $errors->first('kode_pos') }}</span>
-                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -215,18 +199,25 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script>
+    {{-- <script src="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script> --}}
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
     <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    {{-- <script src="{{ asset('js/demo/datatables-demo.js') }}"></script> --}}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ url('public/vendor/jquery/inputmask.min.js') }}"></script>
     <script>
         function goBack() {
             window.history.back();
         }
     </script>
     <script>
+        $(document).ready(function (e) {
+            $('#19').inputmask({
+                mask: '99.999.999.9-999.999'
+            })
+        });
+
         $(function() {
             $('#province').on('change', function() {
                 axios.post('{{ route('province.store') }}', {
