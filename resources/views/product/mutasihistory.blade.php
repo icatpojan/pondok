@@ -1,12 +1,16 @@
 @extends('layouts.app')
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 @endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Mutasi Configuration</h6>
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Filter</button>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Mutasi</h6>
+                {{-- <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    filter
+                </button> --}}
+                {{-- @include('product.modals.filtermutasi') --}}
             </div>
         </div>
         <div class="card-body">
@@ -14,6 +18,7 @@
                 <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
+                            <th>No</th>
                             <th>Sn produk</th>
                             <th>Tipe</th>
                             <th>Asal gudang</th>
@@ -27,13 +32,14 @@
                     <tbody>
                         @foreach ($Mutasi as $mutasi)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $mutasi->sn }}</td>
                                 <td>{{ $mutasi->type->name ?? '---' }}</td>
                                 <td>{{ $mutasi->warehouse_f->name ?? '---' }}</td>
                                 <td>{{ $mutasi->warehouse_t->name ?? '---' }}</td>
                                 <td>{{ $mutasi->user->username ?? '---' }}</td>
                                 <td>{{ $mutasi->reason }}</td>
-                                <td>{{ $mutasi->date ? $mutasi->date->format('d F Y') :  '---' }}</td>
+                                <td>{{ $mutasi->date ? $mutasi->date->format('d F Y') : '---' }}</td>
                                 {{-- <td>
                                     <div class="row">
                                         <div class="col-md-1">
@@ -58,5 +64,14 @@
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                aaSorting: [
+                    [7, 'desc']
+                ],
+                bSort: true,
+            });
+        });
+    </script>
 @endsection

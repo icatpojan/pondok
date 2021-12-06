@@ -19,8 +19,6 @@
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Airtime info</h6>
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Search
-                    Ship</button>
             </div>
         </div>
         <div class="card-body">
@@ -31,44 +29,36 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Id Transmiter</label>
-                                    <input type="number" name="ship_id" id="ship" required class="form-control"
-                                        placeholder="Id Kapal">
+                                    <label for="exampleFormControlFile1">Id Airtime</label>
+                                    <input type="number" value="{{ $Invoice->airtime_id }}" required name="airtime_id"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Ship Name</label>
-                                    <select class="js-example-basic-single form-control haha" name="ship_name"
-                                        id="ship_name">
-                                        @foreach ($Ship as $ship)
-                                            <option {{ $ship->name == $ship->name ? ' selected="selected"' : '' }}
-                                                value="{{ $ship->name }}">{{ $ship->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    {{-- <input disabled type="text" id="ship_name" class="form-control" nama"
-                                    placeholder="Nama Kapal"> --}}
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="exampleFormControlFile1">Start Period</label>
-                                    <input type="date" name="airtime_start" id="airtime_start" class="form-control"
+                                    <label for="exampleFormControlFile1">Start Periode</label>
+                                    <input
+                                        value="{{ $Invoice->airtime_start ? $Invoice->airtime_start->format('Y-m-d') : '---' }}"
+                                        type="date" name="airtime_start" id="airtime_start" class="form-control"
                                         placeholder="Mulai Periode">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Airtime Price</label>
-                                    <input type="number" required name="airtime_price" class="form-control">
+                                    <label for="exampleFormControlFile1">End Periode</label>
+                                    <input type="date" name="airtime_end"
+                                        value="{{ $Invoice->airtime_end ? $Invoice->airtime_end->format('Y-m-d') : '---' }}"
+                                        id="airtime_end" id="airtime_end" class="form-control"
+                                        placeholder="Mulai Periode">
                                 </div>
                             </div>
-                            <div class="col">
+                            {{-- <div class="col">
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Id Airtime</label>
-                                    <input type="number" required name="airtime" class="form-control">
+                                    <label for="exampleFormControlFile1">Airtime Price</label>
+                                    <input type="number" value="{{ $Invoice->airtime_price }}" required
+                                        name="airtime_price" class="form-control">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">NEXT</button>
                     </div>
@@ -84,6 +74,19 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
+        });
+        $('#airtime_start').on('change', function() {
+            var oneYearFromNow = new Date(document.getElementById('airtime_start').value);
+            oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+            let day = oneYearFromNow.getDate();
+            let month = oneYearFromNow.getMonth();
+            let year = oneYearFromNow.getFullYear();
+            if (day < 10) {
+                day = `0${day}`;
+            }
+            console.log(oneYearFromNow)
+            console.log(day)
+            document.getElementById("airtime_end").defaultValue = `${year}-${month + 1}-${day}`;
         });
     </script>
 @endsection

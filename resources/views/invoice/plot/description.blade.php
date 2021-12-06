@@ -58,9 +58,24 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Invoice
                                     Date:</span>
                             </div>
-                            <input type="date" name="invoice_date" class="form-control" required>
+                            <input type="date"
+                                value="{{ $Invoice->invoice_date ? $Invoice->invoice_date->format('Y-m-d') : '---' }}"
+                                name="invoice_date" class="form-control" required>
                         </div>
                     </div>
+                    @if ($Invoice->status == 'performa')
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="width: 140px" id="basic-addon1">Due
+                                        Date:</span>
+                                </div>
+                                <input type="date"
+                                    value="{{ $Invoice->due_date ? $Invoice->due_date->format('Y-m-d') : '---' }}"
+                                    name="due_date" class="form-control" required>
+                            </div>
+                        </div>
+                    @endif
                     <div class="col">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -70,7 +85,8 @@
                             <select name="category" class="form-control">
                                 <option {{ $Invoice->category == 'Renewal' ? 'selected' : '' }} value="Renewal">Renewal
                                 </option>
-                                <option {{ $Invoice->category == 'New Unit' ? 'selected' : '' }} value="New Unit">New Unit
+                                <option {{ $Invoice->category == 'New Unit' ? 'selected' : '' }} value="New Unit">New
+                                    Unit
                                 </option>
                             </select>
                         </div>

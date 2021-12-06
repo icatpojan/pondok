@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Warehouse</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Perbarui Gudang</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -18,17 +18,18 @@
                                 id="exampleInputname" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputAddress">Address</label>
-                            <input value="{{ $warehouse->address }}" required type="text" class="form-control"
-                                id="exampleInputAddress" name="address">
+                            <label for="exampleInputAddress">Alamat</label>
+                            <textarea required type="text" class="form-control" id="exampleInputAddress"
+                                name="address" rows="3">{{ $warehouse->address }}
+                            </textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputContact">Contact</label>
+                            <label for="exampleInputContact">Kontak</label>
                             <input value="{{ $warehouse->contact }}" required type="number" class="form-control"
                                 id="exampleInputContact" name="contact">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputCategory">Category</label>
+                            <label for="exampleInputCategory">Kategori</label>
                             <select name="category" id="" class="form-control" required>
                                 <option {{ $warehouse->category == 'kantor cawang' ? ' selected="selected"' : '' }}
                                     value="kantor cawang">kantor cawang</option>

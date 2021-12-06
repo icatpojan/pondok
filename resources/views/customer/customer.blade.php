@@ -1,31 +1,26 @@
 @extends('layouts.app')
-@section('breadcrumb')
-    <h1 class="h3 mb-0 text-gray-800">Customer</h1>
-@endsection
 @section('css')
 @endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Customer Configuration</h6>
-                <!-- Button trigger modal -->
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Add
-                    Customer</button>
-                @include('customer.modals.addCustomer')
-                @include('customer.modals.updateCustomer')
+                <h6 class="m-0 font-weight-bold text-primary">Konfigurasi Customer</h6>
+                <a href="{{ route('customer.add') }}" class="btn btn-outline-primary btn-sm">Tambah
+                    Customer</a>
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-sm"  id="dataTable">
+                <table class="table table-sm" id="dataTable">
                     <thead class="thead-light">
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>Address</th>
+                            <th>Alamat</th>
+                            <th>Provinsi</th>
                             <th>Fax</th>
-                            <th>Phone</th>
+                            <th>Telp</th>
                             <th>NPWP</th>
                             <th>Email</th>
                             <th>Action</th>
@@ -37,22 +32,23 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->address }}</td>
+                                <td>{{ $customer->province->province_name ?? 'tidak terdaftar' }}</td>
                                 <td>{{ $customer->fax }}</td>
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->npwp }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td class="row">
                                     <div class="col-md-1">
-                                        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                                            data-target="#updateModal-{{ $customer->id }}">
+                                        <a href="{{ route('customer.showing', $customer->id) }}"
+                                            class="btn btn-outline-primary btn-sm">
                                             Edit
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="col-md-1 ml-4">
                                         <form action="{{ route('customer.destroy', $customer->id) }}" method="post">
                                             @csrf
                                             <button class="btn btn-outline-danger btn-sm" type="submit"
-                                                onclick="return confirm ('Yakin hapus User ?')">Remove</button>
+                                                onclick="return confirm ('Yakin hapus User ?')">Hapus</button>
                                         </form>
                                     </div>
                                 </td>
@@ -70,34 +66,4 @@
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        $(function() {
-            $('#province').on('change', function() {
-                axios.post('{{ route('province.store') }}', {
-                        id: $(this).val()
-                    })
-                    .then(function(response) {
-                        $('#city').empty();
-
-                        $.each(response.data, function(city_id, city_name) {
-                            $('#city').append(new Option(city_name, city_id))
-                        })
-                    });
-            });
-            $('#city').on('change', function() {
-                axios.post('{{ route('region.store') }}', {
-                        id: $(this).val()
-                    })
-                    .then(function(response) {
-                        $('#region').empty();
-
-                        $.each(response.data, function(region_id, region_name) {
-                            $('#region').append(new Option(region_name, region_id))
-                        })
-                    });
-            });
-
-        });
-    </script>
 @endsection

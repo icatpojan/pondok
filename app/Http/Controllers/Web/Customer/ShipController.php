@@ -31,7 +31,7 @@ class ShipController extends Controller
             'type' => $request->type,
             'deskripsi' => $request->deskripsi,
             'airtime_start' => $request->airtime_start,
-            'airtime_end' => date('Y-m-d', strtotime('+365 days', strtotime($request->airtime_start))),
+            'airtime_end' => $request->airtime_end,
         ]);
         History::create(['user_id' => Auth::id(), 'keterangan' => 'Menambah Kapal', 'tanggal' => date("d-m-Y")]);
 

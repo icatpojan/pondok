@@ -22,6 +22,7 @@ class CreateDetailsTable extends Migration
             $table->unsignedInteger('status_id')->nullable();
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('warehouse_id')->nullable();
+            $table->unsignedInteger('owner')->nullable();
             $table->integer('transaksi_id')->nullable();
             $table->timestamps();
         });

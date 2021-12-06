@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Invoice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Detail;
@@ -10,23 +11,25 @@ use App\Models\Invoice;
 use App\Models\Ship;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlotController extends Controller
 {
     public function create_invoice()
     {
-        $Invoice = Invoice::where('mark', null)->first();
-        $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
-        $noUrutAkhir = Invoice::max('id');
-        if ($noUrutAkhir) {
-            $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
-        } else {
-            $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
-        }
+        $Invoice = Invoice::where('mark', null)->where('owner', Auth::id())->first();
         if (!$Invoice) {
+            $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+            $noUrutAkhir = Invoice::max('id');
+            if ($noUrutAkhir) {
+                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+            } else {
+                $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+            }
             $Invoice = Invoice::create([
                 'invoice_no' => $Nomer,
                 'status' => 'invoice',
+                'owner' => Auth::id(),
             ]);
         } else {
             $Invoice->status = 'invoice';
@@ -54,6 +57,7 @@ class PlotController extends Controller
         if (!$Invoice) {
             $Invoice = Invoice::create([
                 'invoice_no' => $Nomer,
+                'owner' => Auth::id(),
             ]);
         } else {
             $Invoice->status = 'performa';
@@ -85,14 +89,17 @@ class PlotController extends Controller
     {
         $title = 'Customer Info';
         $Customer = Customer::get(['name', 'id']);
+        $Ship = Ship::get(['name', 'id']);
         $Invoice = Invoice::where('mark', null)->first();
-        return view('invoice.plot.customerInfo', compact('title', 'Customer', 'Invoice'));
+        return view('invoice.plot.customerInfo', compact('title', 'Customer', 'Invoice','Ship'));
     }
 
     public function customerInfostore(Request $request)
     {
-        $Transaksi = Invoice::where('mark', null)->first();
+        // dd($request->ship_id);
+        $Transaksi = Invoice::where('mark', null)->where('owner', Auth::id())->first();
         $Transaksi->customer_id = $request->customer_id;
+        $Transaksi->ship_id = $request->ship_id;
         $Transaksi->npwp = $request->npwp;
         $Transaksi->address = $request->address;
         $Transaksi->update();
@@ -105,17 +112,18 @@ class PlotController extends Controller
     public function transferInfo()
     {
         $title = 'Transfer Info';
+        $Bank = Bank::get(['name', 'id']);
         $Customer = Customer::get(['name', 'id']);
         $Invoice = Invoice::where('mark', null)->first();
-        return view('invoice.plot.transferInfo', compact('title', 'Customer', 'Invoice'));
+        return view('invoice.plot.transferInfo', compact('title', 'Customer', 'Invoice','Bank'));
     }
 
     public function airtimeInfo()
     {
         $title = 'Transfer Info';
         $Ship = Ship::get(['name', 'id']);
-        $Invoice = Invoice::where('mark', null)->first();
-        return view('invoice.plot.airtimeInfo', compact('title', 'Ship','Invoice'));
+        $Invoice = Invoice::where('mark', null)->where('owner', Auth::id())->first();
+        return view('invoice.plot.airtimeInfo', compact('title', 'Ship', 'Invoice'));
     }
 
     public function userInfo()
@@ -160,11 +168,10 @@ class PlotController extends Controller
     public function airtimeInfoStore(Request $request)
     {
         $Transaksi = Invoice::where('mark', null)->first();
-        $Transaksi->ship_id = $request->ship_id;
-        $Transaksi->transmiter_id = $request->transmiter_id;
         $Transaksi->airtime_price = $request->airtime_price;
         $Transaksi->airtime_id = $request->airtime_id;
         $Transaksi->airtime_start = $request->airtime_start;
+        $Transaksi->airtime_end = $request->airtime_end;
         $Transaksi->update();
 
         return redirect(url('/userinfo'));

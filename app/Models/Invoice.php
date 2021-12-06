@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    protected $dates = ['airtime_end', 'airtime_start', 'due_date', 'tanggal'];
+    protected $dates = ['airtime_end', 'airtime_start', 'due_date', 'tanggal','invoice_date'];
     public $guarded = [];
     public function customer()
     {

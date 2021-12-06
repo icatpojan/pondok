@@ -10,6 +10,7 @@ use App\Models\Type;
 use App\Models\Warehouse;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MutasiController extends Controller
 {
@@ -26,13 +27,12 @@ class MutasiController extends Controller
             $Product->where('status_id', $request->status);
         }
         $Product = $Product->get();
-        $Mutasi = Mutasi::with(['warehouse_f', 'type', 'status'])->where('mark', 1)->get();
-        $Warehouse = Warehouse::all();
+        $Mutasi = Mutasi::with(['warehouse_f', 'type', 'status'])->where('mark', 1)->where('owner', Auth::id())->get();
+        $Warehouse = Warehouse::orderBy('name','ASC')->get(['name','id']);
         $Status = Status::get(['name', 'id']);
         $Type = Type::get(['name', 'id']);
-        $User = User::get(['username', 'id']);
         $title = "Mutasi";
-        return view('product.mutasi', compact('title', 'Mutasi', 'Warehouse', 'Product', 'Status', 'Type','User'));
+        return view('product.mutasi', compact('title', 'Mutasi', 'Warehouse', 'Product', 'Status', 'Type'));
     }
 
     public function history()
@@ -63,6 +63,7 @@ class MutasiController extends Controller
                 'type_id' => $Product->type_id,
                 'warehouse_from' => $Product->warehouse_id,
                 'status_id' => $Product->status_id,
+                'owner' => Auth::id(),
             ]);
             $Mutasi->save();
             return back();
@@ -83,7 +84,7 @@ class MutasiController extends Controller
                 $Product->update();
                 $Data->warehouse_to = $request->warehouse_id;
                 $Data->mark = 2;
-                $Data->user_id = $request->user_id;
+                $Data->user_id = Auth::id();
                 $Data->reason = $request->reason;
                 $Data->date = $request->date;
                 $Data->update();

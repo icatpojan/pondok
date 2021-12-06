@@ -32,6 +32,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('type_id')->nullable();
             $table->unsignedInteger('warehouse_id')->nullable();
             $table->unsignedInteger('status_id')->nullable();
+            $table->string('mark')->default('ON');
             $table->timestamps();
         });
     }

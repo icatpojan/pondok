@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-sm ">
-                    <thead>
+                    <thead class="thead-light">
                         <tr>
                             <th>No</th>
                             <th>ID</th>
@@ -20,7 +20,7 @@
                             <th>Tipe</th>
                             <th>Gudang</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,13 +36,16 @@
                                 <td>{{ $product->type->name ?? $product->type_id }}</td>
                                 <td>{{ $product->warehouse->name ?? $product->warehouse_id }}</td>
                                 <td>{{ $product->status->name ?? $product->status_id }}</td>
-                                <td class="row">
-                                    <div class="col-md-1 ml-4">
-                                        <form action="{{ route('mutasi.add') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" value="{{ $product->sn }}" name="sn">
-                                            <button class="btn btn-outline-success btn-sm" type="submit">Add</button>
-                                        </form>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-1 ml-4">
+                                            <form action="{{ route('mutasi.add') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" value="{{ $product->sn }}" name="sn">
+                                                <button class="btn btn-outline-success btn-sm"
+                                                    type="submit">Tambahkan</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

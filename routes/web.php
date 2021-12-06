@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes(['register' => false]);
 
@@ -36,10 +36,17 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/warehouse', 'WarehouseController@store')->name('warehouse.store');
             Route::post('/warehouse/{id}', 'WarehouseController@destroy')->name('warehouse.destroy');
             Route::post('/warehouse/update/{id}', 'WarehouseController@update')->name('warehouse.update');
+
+            Route::get('/bank', 'BankController@index')->name('bank.index');
+            Route::post('/bank', 'BankController@store')->name('bank.store');
+            Route::post('/bank/{id}', 'BankController@destroy')->name('bank.destroy');
+            Route::post('/bank/update/{id}', 'BankController@update')->name('bank.update');
         });
         Route::group(['namespace' => 'Customer'], function () {
 
             Route::get('/customer', 'CustomerController@index')->name('customer.index');
+            Route::get('/addcustomer', 'CustomerController@add')->name('customer.add');
+            Route::get('/customer/{id}', 'CustomerController@showing')->name('customer.showing');
             Route::post('/customer', 'CustomerController@store')->name('customer.store');
             Route::post('/customer/{id}', 'CustomerController@destroy')->name('customer.destroy');
             Route::post('/customer/update/{id}', 'CustomerController@update')->name('customer.update');
@@ -91,8 +98,11 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         Route::group(['namespace' => 'Invoice'], function () {
+            Route::get('/editperforma/{id}', 'PerformaController@index')->name('invoice.editperforma');
+            Route::post('/editperforma/{id}', 'PerformaController@edit')->name('edit.performa');
 
             Route::get('/invoice', 'InvoiceController@index')->name('invoice.index');
+            Route::get('/performa', 'InvoiceController@performa')->name('performa.index');
             Route::post('/invoice', 'InvoiceController@store')->name('invoice.store');
             Route::get('/cari', 'InvoiceController@cari')->name('invoice.cari');
             Route::post('/invoice/add', 'InvoiceController@add')->name('invoice.add');
@@ -127,6 +137,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/report/update/{id}', 'ReportController@update')->name('report.update');
             Route::post('/reportdelete/{id}', 'ReportController@delete')->name('report.delete');
 
+            Route::get('/stock', 'ReportController@stock')->name('stock.index');
         });
 
 

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 @endsection
 @section('content')
     <div class="card shadow mb-4">
@@ -71,83 +72,31 @@
     </div>
     @include('invoice.cards.search')
     <div class="row">
-        <div class="col">
-            <a href="{{ route('create.invoice') }}" type="button" class="btn btn-success btn-lg btn-block">Create
-                Invoice</a>
-        </div>
-        <div class="col">
-            <a href="{{ route('create.performa') }}" type="button" class="btn btn-primary btn-lg btn-block">Create
-                Performa</a>
-        </div>
+        @if ($Invoice->status == 'invoice')
+            <div class="col">
+                <a href="{{ route('create.invoice') }}" type="button" class="btn btn-success btn-lg btn-block">Create
+                    Invoice</a>
+            </div>
+        @else
+            <div class="col">
+                <a href="{{ route('create.performa') }}" type="button" class="btn btn-primary btn-lg btn-block">Create
+                    Performa</a>
+            </div>
+        @endif
     </div>
 @endsection
 @section('script')
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-
+    <script src="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script>
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
-        $('#stempel').on('change', function() {
-            axios.post('{{ route('invoice.stempel') }}', {
-                    id: $(this).val()
-                })
-                .then(function(response) {
-                    let data = response.data.data
-                    $('#nomer_invoice').val(data);
-                });
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                aaSorting: [
+                    [5, 'desc']
+                ],
+                bSort: true,
+            });
         });
-        $('#customer').on('change', function() {
-            axios.post('{{ route('customer.show') }}', {
-                    id: $(this).val()
-                })
-                .then(function(response) {
-                    $('#address').val(response.data.data.address);
-                    $('#npwp').val(response.data.data.npwp);
-                });
-        });
-        $('#ship').on('change', function() {
-            axios.post('{{ route('ship.show') }}', {
-                    id: $(this).val()
-                })
-                .then(function(response) {
-                    $('#ship_name').val(response.data.data.name);
-                    $('#ship_name').val(response.data.data.name);
-                    $('.haha').val(response.data.data.name);
-                    $('#airtime_start').val(response.data.data.airtime_start);
-                    $('#airtime_end').val(response.data.data.airtime_end);
-                });
-        });
-        $('#ship_name').on('change', function() {
-            axios.post('{{ route('ship.show') }}', {
-                    name: $(this).val()
-                })
-                .then(function(response) {
-                    $('#ship').val(response.data.data.id);
-                    $('#ship_name').val(response.data.data.name);
-                    $('.haha').val(response.data.data.name);
-                    $('#airtime_start').val(response.data.data.airtime_start);
-                    $('#airtime_end').val(response.data.data.airtime_end);
-                });
-        });
-        // $(document).ready(function() {
-        //     $('.btn-search').click(function(e) {
-        //         let warehouse = $('select[name=warehouse]').val();
-        //         let type = $('select[name=type]').val();;
-
-        //         axios.post('{{ route('invoice.cari') }}', {
-        //                 warehouse: warehouse,
-        //                 type: type,
-        //             })
-        //             .then(function(response) {
-        //                 console.log(response)
-        //                 $('#data').append(
-        //                     $.each(response.data, function(id, sn) {
-        //                         $('#region').append(new Option(sn, id))
-        //                     })
-        //                 )
-        //             });
-        //     });
-        // });
     </script>
 @endsection

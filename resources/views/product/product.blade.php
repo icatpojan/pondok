@@ -1,21 +1,21 @@
 @extends('layouts.app')
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 @endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Product Configuration</h6>
-                <!-- Button trigger modal -->
+                <h6 class="m-0 font-weight-bold text-primary">Konfigurasi Produk</h6>
                 <div>
                     <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
                         data-target="#exampleModal">
                         Filter
                     </button>
                     <a href="{{ route('mutasi.index') }}" class="btn btn-outline-success btn-sm">Mutasi
-                        Product</a>
-                    <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Add
-                        Product</button>
+                        Produk</a>
+                    <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Tambahkan
+                        Produk</button>
                 </div>
                 @include('product.modals.addProduct')
                 @include('product.modals.updateProduct')
@@ -24,10 +24,9 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-
                 <table class="table table-sm" id="dataTable">
-                    <button class="btn btn-danger btn-sm delete_all"
-                    data-url="{{ url('product-delete-all') }}">selected &nbsp;<i class="fa fa-trash"></i></button>
+                    <button class="btn btn-danger btn-sm delete_all" data-url="{{ url('product-delete-all') }}">selected
+                        &nbsp;<i class="fa fa-trash"></i></button>
                     <thead class="thead-light">
                         <tr>
                             <th width="50px"><input type="checkbox" id="master"></th>
@@ -35,7 +34,7 @@
                             <th>SN</th>
                             <th>Imei</th>
                             <th>Keterangan</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Masuk</th>
                             <th>Price</th>
                             <th>Type</th>
                             <th>Warehouse</th>
@@ -51,7 +50,7 @@
                                 <td>{{ $product->sn }}</td>
                                 <td>{{ $product->imei }}</td>
                                 <td>{{ $product->keterangan }}</td>
-                                <td>{{ $product->tgl_masuk }}</td>
+                                <td>{{ $product->tgl_masuk->format('d M Y') }}</td>
                                 <td>{{ number_format($product->type->price) }}</td>
                                 <td>{{ $product->type->name ?? 'tanpa keterangan' }}</td>
                                 <td>{{ $product->warehouse->name ?? 'tanpa keterangan' }}</td>
@@ -84,7 +83,16 @@
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                aaSorting: [
+                    [5, 'desc']
+                ],
+                bSort: true,
+            });
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
 
