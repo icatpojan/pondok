@@ -45,7 +45,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
+
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         @yield('breadcrumb')
                         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i

@@ -3,19 +3,25 @@
 namespace App\Http\Controllers\Web\Invoice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Detail;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Status;
+use App\Models\Type;
+use App\Models\Warehouse;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class ReportController extends Controller
 {
     public function index(Request $request)
     {
+        // return $request->awal . 'and' . $request->akhir;
         $Invoice = Invoice::where('mark', '!=', null)->orderby('created_at', 'DESC');
-        if ($request->awal || $request->akhir) {
+        if ($request->awal && $request->akhir) {
             $Invoice->whereBetween('created_at', [$request->awal, $request->akhir]);
+            // return $request->akhir;
         }
         if ($request->awal) {
             $Invoice->where('created_at', 'LIKE', "$request->awal%");
@@ -23,6 +29,20 @@ class ReportController extends Controller
         $Invoice = $Invoice->get();
         $title = "Report";
         return view('report.report', compact('title', 'Invoice'));
+    }
+
+    public function stock(Request $request)
+    {
+        $id = 1;
+        if ($request->id) {
+            $id = $request->id;
+        }
+        $Warehouse = Warehouse::get();
+        $Status = Status::get(['name','id']);
+        $Header = Status::find($request->id ?? $id);
+        $Type = Type::with('category')->get();
+        $title = "Type";
+        return view('report.stock', compact('title', 'Type', 'Warehouse', 'id','Status','Header'));
     }
 
     public function cetak_pdf($id)

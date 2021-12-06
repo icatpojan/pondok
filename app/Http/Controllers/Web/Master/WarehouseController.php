@@ -14,7 +14,7 @@ class WarehouseController extends Controller
     public function index()
     {
         $Warehouse = Warehouse::with(['province'])->get();
-        $Province = Province::all();
+        $Province = Province::orderBy('province_name','ASC')->get(['province_name', 'province_id']);
         $title = "Warehouse";
         return view('master.warehouse', compact('title', 'Warehouse', 'Province'));
     }
@@ -42,6 +42,7 @@ class WarehouseController extends Controller
         $Warehouse->contact = $request->contact;
         $Warehouse->email = $request->email;
         $Warehouse->area = $request->area;
+        $Warehouse->category = $request->category;
         $Warehouse->update();
         History::create(['user_id' => Auth::id(), 'keterangan' => 'mengupdate Gudang', 'tanggal' => date("d-m-Y")]);
         alert()->success('Sukses', 'Berhasil mengupdate');

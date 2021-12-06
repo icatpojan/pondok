@@ -15,10 +15,6 @@ class TypeController extends Controller
 {
     public function index()
     {
-        $Warehouse = Warehouse::get();
-        // $Product = Product::where('status_id', 1)->orderBy('created_at')->get()->groupBy(function ($item) {
-        //     return $item->type->name;
-        // });
         $Category = Category::get(['id', 'name']);
         $Type = Type::with('category')->get();
         foreach ($Type as $type) {
@@ -30,15 +26,15 @@ class TypeController extends Controller
         }
         $Type = Type::with('category')->get();
         $title = "Type";
-        return view('product.type', compact('title', 'Type', 'Category', 'Warehouse'));
+        return view('product.type', compact('title', 'Type', 'Category'));
     }
+
     public function store(Request $request)
     {
         $Type = Type::create([
             'name' => $request->name,
             'category_id' => $request->category_id,
             'price' => $request->price,
-            'stock' => $request->stock,
         ]);
         History::create(['user_id' => Auth::id(), 'keterangan' => 'Menambah tipe', 'tanggal' => date("d-m-Y")]);
 
@@ -52,7 +48,6 @@ class TypeController extends Controller
         $Type->name = $request->name;
         $Type->category_id = $request->category_id;
         $Type->price = $request->price;
-        $Type->stock = $request->stock;
         $Type->update();
         History::create(['user_id' => Auth::id(), 'keterangan' => 'Mengupdate tipe', 'tanggal' => date("d-m-Y")]);
 

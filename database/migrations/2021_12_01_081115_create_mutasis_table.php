@@ -18,6 +18,7 @@ class CreateMutasisTable extends Migration
             $table->integer('sn')->unique();
             $table->string('imei', 15);
             $table->unsignedInteger('mark')->default(1);
+            $table->unsignedInteger('owner')->nullable();
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('warehouse_from');
             $table->unsignedInteger('warehouse_to')->nullable();

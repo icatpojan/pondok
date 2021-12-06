@@ -7,15 +7,15 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-sm ">
-                    <thead>
+                <table class="table table-sm" id="dataTable">
+                    <thead class="thead-light">
                         <tr>
                             <th>No</th>
                             <th>ID</th>
                             <th>SN</th>
                             <th>Imei</th>
                             <th>Keterangan</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Tgl Masuk</th>
                             <th>Harga</th>
                             <th>Tipe</th>
                             <th>Gudang</th>

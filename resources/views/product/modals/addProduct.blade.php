@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahModalLabel">Add Product</h5>
+                <h5 class="modal-title" id="tambahModalLabel">Tambahkan Produk</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,8 +15,8 @@
                         <input required type="number" class="form-control" id="1" name="sn">
                     </div>
                      <div class="form-group">
-                        <label for="1">id</label>
-                        <input required type="product_id" class="form-control" id="1" name="sn">
+                        <label for="1">Id</label>
+                        <input required type="number" class="form-control" id="1" name="product_id">
                     </div>
                     <div class="form-group">
                         <label for="2">Imei</label>
@@ -31,7 +31,7 @@
                         <input required type="date" class="form-control" id="4" name="tgl_masuk">
                     </div>
                     <div class="form-group">
-                        <label for="5">Type</label>
+                        <label for="5">Tipe</label>
                         <select name="type_id" id="5" class="form-control">
                             @foreach ($Type as $type)
                                 <option value="{{ $type->id }}">
@@ -41,7 +41,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="6">Warehouse</label>
+                        <label for="6">Gudang</label>
                         <select name="warehouse_id" id="6" class="form-control">
                             @foreach ($Warehouse as $warehouse)
                                 <option value="{{ $warehouse->id }}">
@@ -62,8 +62,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

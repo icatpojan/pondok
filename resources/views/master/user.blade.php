@@ -8,9 +8,9 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">User Configuration</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Konfigurasi User</h6>
                 <!-- Button trigger modal -->
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Add
+                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Tambah
                     User
                 </button>
             </div>
@@ -23,7 +23,7 @@
                             <th>username</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                                                 <button class="btn btn-outline-danger btn-sm" type="submit"
                                                     onclick="return confirm ('Yakin hapus User ?')">
                                                     {{-- <i class="fas fa-trash"></i> --}}
-                                                    Remove
+                                                    Hapus
                                                 </button>
                                             </form>
                                         </div>

@@ -6,10 +6,10 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Warehouse Configuration</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Konfigurasi Gudang</h6>
                 <!-- Button trigger modal -->
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Add
-                    Warehouse</button>
+                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Tambah
+                    Gudang</button>
                 @include('master.modals.addWarehouse')
                 @include('master.modals.updateWarehouse')
             </div>
@@ -19,18 +19,20 @@
                 <table class="table table-sm" id="dataTable">
                     <thead class="thead-light">
                         <tr>
+                            <th>no</th>
                             <th>name</th>
-                            <th>Address</th>
+                            <th>Alamat</th>
                             <th>Email</th>
                             <th>Area</th>
-                            <th>Category</th>
-                            <th>Contact</th>
-                            <th>Action</th>
+                            <th>kategori</th>
+                            <th>Kontak</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($Warehouse as $warehouse)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $warehouse->name }}</td>
                                 <td>{{ $warehouse->address }}</td>
                                 <td>{{ $warehouse->email }}</td>
@@ -48,7 +50,7 @@
                                         <form action="{{ route('warehouse.destroy', $warehouse->id) }}" method="post">
                                             @csrf
                                             <button class="btn btn-outline-danger btn-sm" type="submit"
-                                                onclick="return confirm ('Yakin hapus Warehouse ?')">Remove</button>
+                                                onclick="return confirm ('Yakin hapus Warehouse ?')">Hapus</button>
                                         </form>
                                     </div>
                                 </td>

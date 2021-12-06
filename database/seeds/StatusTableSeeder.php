@@ -13,6 +13,7 @@ class StatusTableSeeder extends Seeder
     {
         \App\Models\Status::insert([
             ['name' => 'Tersedia'],
+            ['name' => 'Ditawarkan'],
             ['name' => 'Terjual'],
             ['name' => 'Rusak'],
             ['name' => 'Retur']
