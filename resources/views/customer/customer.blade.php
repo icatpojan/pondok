@@ -116,45 +116,45 @@
             });
 
             // npwp form
-            $('.npwp').focus(function() { // event listener focus, langsung dihapus value inputnya
+            function validateNPWP(arg) {
+                const reg = "/^([\d]{2}[.][\d]{3}[.][\d]{3}[.][\d]{1}[-][\d]{3}[.][\d]{3})/g";
+                let regexp = new RegExp(reg);
+
+                return regexp.test(arg);
+            }
+
+            $('#7, .npwp_edit').blur(function() { // input npwp di addCostumer dan updateCostumer
+                let intval = $(this).val().replace(/[^0-9]/g, ''); // remove all except number
+                if(intval.length != 15) { // validasi panjang number
+                    $(this).addClass('is-invalid').val('').focus();
+                }else if( !validateNPWP($(this).val()) ) {
+                    let arr = [...intval]; // spread value
+                    let data = '';
+
+                    for(let i=0; i<arr.length; i++) {
+                        if(i == 2) {
+                            data += '.';
+                        } else if(i == 5) {
+                            data += '.';
+                        } else if(i == 8) {
+                            data += '.';
+                        } else if(i == 9) {
+                            data += '-';
+                        } else if(i == 12) {
+                            data += '.';
+                        }
+
+                        data += arr[i].toString(); // masukkan ke dalam string
+
+                        // console.log(i, data); // untuk cek data
+                    }
+
+                    $(this).val(data).removeClass('is-invalid').addClass('is-valid');
+                }
+            }).focus(function() { // focus menghilangkan value yang ada
+                $(this).removeClass('is-valid');
                 $(this).val('');
-            }).keyup(function() { // event listener keyup, jika value mencapai max length, maka focus ke input selanjutnya
-                const val = $(this).val();
-                const id = $(this).attr('id');
-                const max = $(this).data('maxlength');
-
-                if(id == 'npwp_1' && val.length == max) $('#npwp_2').focus();
-                if(id == 'npwp_2' && val.length == max) $('#npwp_3').focus();
-                if(id == 'npwp_3' && val.length == max) $('#npwp_4').focus();
-                if(id == 'npwp_4' && val.length == max) $('#npwp_5').focus();
-                if(id == 'npwp_5' && val.length == max) $('#npwp_6').focus();
-                if(id == 'npwp_6' && val.length == max) $('#8').focus();
-            });
-
-            $('#npwp_6').blur(function() { // masukkan value dari seluruh input .npwp ke input npwp
-                var ek = $('.npwp').map((_,el) => el.value).get()
-
-                $('[name="npwp"]').val(ek.join(''));
-            });
-
-            $('.npwp_edit').focus(function() { // event listener focus, langsung dihapus value inputnya
-                $(this).val('');
-            }).keyup(function() { // event listener keyup, jika value mencapai max length, maka focus ke input selanjutnya
-                const val = $(this).val();
-                const id = $(this).attr('id');
-                const max = $(this).data('maxlength');
-
-                if(id == 'npwp_edit_1' && val.length == max) $('#npwp_edit_2').focus();
-                if(id == 'npwp_edit_2' && val.length == max) $('#npwp_edit_3').focus();
-                if(id == 'npwp_edit_3' && val.length == max) $('#npwp_edit_4').focus();
-                if(id == 'npwp_edit_4' && val.length == max) $('#npwp_edit_5').focus();
-                if(id == 'npwp_edit_5' && val.length == max) $('#npwp_edit_6').focus();
-                if(id == 'npwp_edit_6' && val.length == max) $(this).blur();
-            }).blur(function() { // masukkan value dari seluruh input .npwp ke input npwp
-                var ek = $('.npwp_edit').map((_,el) => el.value).get()
-
-                $('[name="npwp"]').val(ek.join(''));
-            });
+            })
         });
     </script>
 @endsection
