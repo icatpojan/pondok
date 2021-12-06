@@ -86,7 +86,6 @@
                 <a class="collapse-item" href="{{ route('type.index') }}">Tipe</a>
                 <a class="collapse-item" href="{{ route('status.index') }}">Status</a>
                 <a class="collapse-item" href="{{ route('product.index') }}">Product</a>
-                <a class="collapse-item" href="{{ route('mutasi.history') }}">Riwayat Mutasi</a>
                 <a class="collapse-item" href="{{ route('trash.index') }}">Trash</a>
             </div>
         </div>
@@ -117,6 +116,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Management Report:</h6>
                 <a class="collapse-item" href="{{ route('stock.index') }}">Stok Produk</a>
+                <a class="collapse-item" href="{{ route('mutasi.history') }}">Riwayat Mutasi</a>
                 {{-- <a class="collapse-item" href="{{ route('performa.index') }}">Performa</a> --}}
             </div>
         </div>

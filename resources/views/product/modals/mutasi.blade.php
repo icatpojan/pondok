@@ -21,8 +21,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="warehouse">Alasan mutasi</label>
-                        <input type="text" class="form-control" name="reason">
+                        <label for="reason">Alasan mutasi</label>
+                        <textarea name="reason" class="form-control" id="reason" rows="3"></textarea>
                     </div>
                       <div class="form-group">
                         <label for="time">Tanggal mutasi</label>
