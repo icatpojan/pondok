@@ -21,12 +21,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="reason">Alasan mutasi</label>
-                        <textarea name="reason" class="form-control" id="reason" rows="3"></textarea>
-                    </div>
-                      <div class="form-group">
                         <label for="time">Tanggal mutasi</label>
                         <input type="date" class="form-control" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Alasan mutasi</label>
+                        <textarea name="reason" class="form-control" id="reason" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
