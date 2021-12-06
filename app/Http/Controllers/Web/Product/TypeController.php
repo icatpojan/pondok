@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\History;
 use App\Models\Product;
 use App\Models\Type;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,18 +15,18 @@ class TypeController extends Controller
 {
     public function index()
     {
-        $Category = Category::get(['id','name']);
+        $Category = Category::get(['id', 'name']);
         $Type = Type::with('category')->get();
         foreach ($Type as $type) {
             $type = Type::where('id', $type->id)->first();
             $Produk = Product::where('status_id', 1)->where('type_id', $type->id)->count();
-
             $type->update([
                 'stock' => $Produk,
             ]);
         }
+        $Type = Type::with('category')->get();
         $title = "Type";
-        return view('product.type', compact('title', 'Type','Category'));
+        return view('product.type', compact('title', 'Type', 'Category'));
     }
 
     public function store(Request $request)
@@ -34,7 +35,6 @@ class TypeController extends Controller
             'name' => $request->name,
             'category_id' => $request->category_id,
             'price' => $request->price,
-            'stock' => $request->stock,
         ]);
         History::create(['user_id' => Auth::id(), 'keterangan' => 'Menambah tipe', 'tanggal' => date("d-m-Y")]);
 
@@ -48,7 +48,6 @@ class TypeController extends Controller
         $Type->name = $request->name;
         $Type->category_id = $request->category_id;
         $Type->price = $request->price;
-        $Type->stock = $request->stock;
         $Type->update();
         History::create(['user_id' => Auth::id(), 'keterangan' => 'Mengupdate tipe', 'tanggal' => date("d-m-Y")]);
 

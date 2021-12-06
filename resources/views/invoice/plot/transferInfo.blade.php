@@ -14,7 +14,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Customer info</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Transfer info</h6>
             </div>
         </div>
         <form action="{{ route('transferInfoStore') }}" method="post">
@@ -27,16 +27,17 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Transfer date
                                     :</span>
                             </div>
-                            <input type="date" value="{{ $Invoice->transfer_date }}" name="transfer_date" class="form-control" placeholder="geosat">
+                            <input type="date" value="{{ $Invoice->transfer_date }}" name="transfer_date"
+                                class="form-control" placeholder="geosat">
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <select name="bank" id="bank" class="form-control">
-                                <option {{ $Invoice->bank == 'BCA' ? 'selected' : '' }} value="BCA">BCA</option>
-                                <option {{ $Invoice->bank == 'BRI' ? 'selected' : '' }} value="BRI" selected>BRI</option>
-                                <option {{ $Invoice->bank == 'BNI' ? 'selected' : '' }} value="BNI">BNI</option>
-                                <option {{ $Invoice->bank == 'Mandiri' ? 'selected' : '' }} value="Mandiri">Mandiri</option>
+                                @foreach ($Bank as $bank)
+                                    <option {{ $Invoice->bank == $bank->id ? 'selected' : '' }}
+                                        value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -48,8 +49,8 @@
                                 <span class="input-group-text" style="width: 140px" id="basic-addon1">Transfer
                                     name:</span>
                             </div>
-                            <input value="{{ $Invoice->transfer_name }}" name="transfer_name" type="text" class="form-control"
-                                placeholder="nama pentransfer...">
+                            <input value="{{ $Invoice->transfer_name }}" name="transfer_name" type="text"
+                                class="form-control" placeholder="nama pentransfer...">
                         </div>
                     </div>
                     <div class="col">

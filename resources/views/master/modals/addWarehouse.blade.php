@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahModalLabel">Add Warehouse</h5>
+                <h5 class="modal-title" id="tambahModalLabel">Tambah Gudang</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,15 +16,15 @@
                         <input required type="text" class="form-control" id="exampleInputname" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputAddress">Address</label>
+                        <label for="exampleInputAddress">Alamat</label>
                         <textarea class="form-control" id="exampleInputAddress" required name="address" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputContact">Contact</label>
+                        <label for="exampleInputContact">Kontak</label>
                         <input required type="number" class="form-control" id="exampleInputContact" name="contact">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputCategory">Category</label>
+                        <label for="exampleInputCategory">Kategori</label>
                         <select name="category" id="" class="form-control">
                             <option value="kantor cawang">kantor cawang</option>
                             <option value="koperasi">koperasi</option>

@@ -5,10 +5,9 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">status Configuration</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Konfigurasi Status</h6>
                 <!-- Button trigger modal -->
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Add
-                    Status</button>
+                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Tambah Status</button>
                 @include('product.modals.addStatus')
                 @include('product.modals.updateStatus')
             </div>
@@ -18,13 +17,15 @@
                 <table class="table table-sm ">
                     <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Action</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         @foreach ($Status as $status)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $status->name }}</td>
                                 <td class="row">
                                     <div class="col-md-1">
@@ -37,7 +38,7 @@
                                         <form action="{{ route('status.destroy', $status->id) }}" method="post">
                                             @csrf
                                             <button class="btn btn-outline-danger btn-sm" type="submit"
-                                                onclick="return confirm ('Yakin hapus status ?')">Remove</button>
+                                                onclick="return confirm ('Yakin hapus status ?')">Hapus</button>
                                         </form>
                                     </div>
                                 </td>

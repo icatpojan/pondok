@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahModalLabel">Add Customer</h5>
+                <h5 class="modal-title" id="tambahModalLabel">Tambah Kapal</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <label for="1">Name</label>
+                        <label for="1">Nama</label>
                         <input required type="text" class="form-control" id="1" name="name">
                     </div>
                     <div class="form-group">
@@ -24,7 +24,7 @@
                         <input required type="number" class="form-control" id="3" name="imei">
                     </div>
                     <div class="form-group">
-                        <label for="5">Type</label>
+                        <label for="5">Tipe</label>
                         <select name="type" id="5 " class="form-control">
                             <option value="Chopper">Chopper</option>
                             <option value="Personal">Personal</option>
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="6">Customer</label>
+                        <label for="6">Nama Customer</label>
                         <select name="customer_id" id="6" class="form-control">
                             @foreach ($Customer as $customer)
                                 <option value="{{ $customer->id }}">
@@ -44,11 +44,24 @@
                     </div>
                     <div class="form-group">
                         <label for="7">Keterangan tambahan</label>
-                        <textarea class="form-control" id="7" name="deskripsi" id="" placeholder="Tambahkan bila ada.." rows="3"></textarea>
+                        <textarea class="form-control" id="7" name="deskripsi" id=""
+                            placeholder="Tambahkan bila ada.." rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="9">Airtime Start</label>
-                        <input required type="date" class="form-control" id="9" name="airtime_start">
+                        <input required type="date" class="form-control" id="airtime_start" name="airtime_start">
+                    </div>
+                    {{-- <button onclick="goBack()">Go Back</button>
+                    <script>
+                        function goBack() {
+                            var oneYearFromNow = new Date(document.getElementById('airtime_start').value);
+                            oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+                            console.log(oneYearFromNow);
+                        }
+                    </script> --}}
+                    <div class="form-group">
+                        <label for="9">Airtime End</label>
+                        <input required type="date" class="form-control" id="myDate" name="airtime_end">
                     </div>
                 </div>
                 <div class="modal-footer">

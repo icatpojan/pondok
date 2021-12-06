@@ -5,10 +5,9 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Category Configuration</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Konfigurasi Kategori</h6>
                 <!-- Button trigger modal -->
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Add
-                    Category</button>
+                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Tambah Kategori</button>
                 @include('product.modals.addCategory')
                 @include('product.modals.updateCategory')
             </div>
@@ -18,16 +17,18 @@
                 <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Action</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($Category as $category)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td class="row">
-                                    <div class="col-md-1">
+                                    <div class="col-md-2">
                                         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
                                             data-target="#updateModal-{{ $category->id }}">
                                             Edit
@@ -37,7 +38,7 @@
                                         <form action="{{ route('category.destroy', $category->id) }}" method="post">
                                             @csrf
                                             <button class="btn btn-outline-danger btn-sm" type="submit"
-                                                onclick="return confirm ('Yakin hapus Category ?')">Remove</button>
+                                                onclick="return confirm ('Yakin hapus Category ?')">Hapus</button>
                                         </form>
                                     </div>
                                 </td>

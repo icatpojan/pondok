@@ -21,22 +21,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="warehouse">Alasan mutasi</label>
-                        <input type="text" class="form-control" name="reason">
-                    </div>
-                      <div class="form-group">
                         <label for="time">Tanggal mutasi</label>
                         <input type="date" class="form-control" name="date">
                     </div>
                     <div class="form-group">
-                        <label for="user_id">Pemutasi</label>
-                        <select name="user_id" id="user_id" class="form-control">
-                            <option value="">== Select user ==</option>
-                            @foreach ($User as $user)
-                                <option value="{{ $user->id }}">{{ $user->username }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <label for="reason">Alasan mutasi</label>
+                        <textarea name="reason" class="form-control" id="reason" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

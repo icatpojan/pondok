@@ -20,6 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->dateTime('invoice_date')->nullable();
             $table->string('type')->nullable();
             $table->string('category')->nullable();
+            $table->unsignedInteger('owner')->nullable();
 
             $table->text('deskripsi', 64)->nullable();
             $table->unsignedInteger('customer_id')->nullable();
@@ -43,8 +44,7 @@ class CreateInvoicesTable extends Migration
             $table->dateTime('airtime_start')->nullable();
             $table->dateTime('airtime_end')->nullable();
             $table->unsignedInteger('airtime_price')->nullable();
-            $table->unsignedInteger('transmiter_id')->nullable();
-            $table->unsignedInteger('airtime')->nullable();
+            $table->unsignedInteger('airtime_id')->nullable();
             $table->string('tanggal')->nullable();
             $table->string('mark')->nullable();
             $table->timestamps();

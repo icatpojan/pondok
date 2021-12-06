@@ -40,7 +40,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Management admin:</h6>
                 <a class="collapse-item" href="{{ route('user.index') }}">User</a>
-                <a class="collapse-item" href="{{ route('warehouse.index') }}">Warehouse</a>
+                <a class="collapse-item" href="{{ route('warehouse.index') }}">Gudang</a>
+                <a class="collapse-item" href="{{ route('bank.index') }}">Bank</a>
             </div>
         </div>
     </li>
@@ -75,38 +76,48 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
-            <i class="fas fa-fw fa-boxes    "></i>
+            <i class="fas fa-fw fa-boxes"></i>
             <span>Product</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Managenement Product:</h6>
                 <a class="collapse-item" href="{{ route('category.index') }}">Category</a>
-                <a class="collapse-item" href="{{ route('type.index') }}">Type</a>
+                <a class="collapse-item" href="{{ route('type.index') }}">Tipe</a>
                 <a class="collapse-item" href="{{ route('status.index') }}">Status</a>
                 <a class="collapse-item" href="{{ route('product.index') }}">Product</a>
-                <a class="collapse-item" href="{{ route('mutasi.history') }}">Riwayat Mutasi</a>
                 <a class="collapse-item" href="{{ route('trash.index') }}">Trash</a>
             </div>
         </div>
     </li>
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('invoice.index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Buat Invoice</span></a>
-    </li>
-    <li class="nav-item">
+     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
             aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Report</span>
+            <i class="fas fa-fw fa-water"></i>
+            <span>Invoice</span>
         </a>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Management Report:</h6>
-                <a class="collapse-item" href="{{ route('report.index') }}">Invoice</a>
-                <a class="collapse-item" href="{{ route('performa.index') }}">Performa</a>
+                <a class="collapse-item" href="{{ route('invoice.index') }}">Buat Invoice</a>
+                <a class="collapse-item" href="{{ route('performa.index') }}">Buat Performa</a>
+                <a class="collapse-item" href="{{ route('report.index') }}">List Invoice</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages99" aria-expanded="true"
+            aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Report</span>
+        </a>
+        <div id="collapsePages99" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Management Report:</h6>
+                <a class="collapse-item" href="{{ route('stock.index') }}">Stok Produk</a>
+                <a class="collapse-item" href="{{ route('mutasi.history') }}">Riwayat Mutasi</a>
+                {{-- <a class="collapse-item" href="{{ route('performa.index') }}">Performa</a> --}}
             </div>
         </div>
     </li>

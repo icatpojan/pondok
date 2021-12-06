@@ -1,15 +1,15 @@
 @extends('layouts.app')
-@section('breadcrumb')
-    <h1 class="h3 mb-0 text-gray-800">Report Invoice</h1>
-@endsection
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 @endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Daftar Invoice</h6>
-                <a href="/invoice/export_excel" class="btn btn-success" target="_blank">EXPORT EXCEL</a>
+                <h6 class="m-0 font-weight-bold text-primary">Cari Invoice</h6>
+                <button data-toggle="modal" data-target="#searchModal" class="btn btn-outline-primary btn-sm">Cari invoice</button>
+                @include('report.modals.searchInvoice')
+                {{-- <a href="/invoice/export_excel" class="btn btn-success" target="_blank">EXPORT EXCEL</a> --}}
             </div>
         </div>
         <div class="card-body">
@@ -21,80 +21,60 @@
                             <th>nomer inv</th>
                             <th>Jenis</th>
                             <th>Deskripsi</th>
-                            <th>Address</th>
-                            <th>Tahun</th>
-                            <th>Customer</th>   
-                            <th>Ship</th>
+                            <th>Alamat</th>
+                            <th>Customer</th>
+                            <th>Kapal</th>
                             <th>Tanggal</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($Invoice as $invoice)
-                            <tr>
-                                <td>{{ $invoice->id }}</td>
-                                <td>{{ $invoice->invoice_no }}</td>
-                                <td>{{ $invoice->jenis }}</td>
-                                <td>{{ $invoice->deskripsi }}</td>
-                                <td>{{ $invoice->address }}</td>
-                                <td>{{ $invoice->tahun }}</td>
-                                <td>{{ $invoice->customer->name ?? $invoice->customer_id }}</td>
-                                <td>{{ $invoice->ship->name ?? $invoice->ship_id }}</td>
-                                <td>{{ $invoice->tanggal }}</td>
-                                <td>
-                                    <div class="d-flex flex-row bd-highlight mb-3">
+                            @if ($invoice->status == 'invoice')
+                                <tr class="table-success">
+                                @else
+                                <tr class="table-warning">
+                            @endif
+                            <td>{{ $invoice->id }}</td>
+                            <td>{{ $invoice->invoice_no }}</td>
+                            <td>{{ $invoice->type }}</td>
+                            <td>{{ $invoice->deskripsi }}</td>
+                            <td>{{ $invoice->address }}</td>
+                            <td>{{ $invoice->customer->name ?? $invoice->customer_id }}</td>
+                            <td>{{ $invoice->ship->name ?? $invoice->ship_id }}</td>
+                            <td>{{ $invoice->invoice_date->format('d F Y') }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-3">
+                                    @if ($invoice->status == 'performa')
                                         <div class="p-1 bd-highlight">
-                                            <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
-                                                target="_blank">
-                                                @csrf
+                                            <form action="{{ route('invoice.editperforma', $invoice->id) }}" method="GET">
                                                 <button class="btn btn-outline-primary btn-sm" type="submit"><i
                                                         class="fa fa-eye"></i></button>
                                             </form>
                                         </div>
-                                        <div class="p-1 bd-highlight">
-                                            <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
-                                                target="_blank">
-                                                @csrf
-                                                <button class="btn btn-outline-warning btn-sm" type="submit"><i
-                                                        class="fa fa-print"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="p-1 bd-highlight">
-                                            <form action="{{ route('report.delete', $invoice->id) }}" method="post">
-                                                @csrf
-                                                <button class="btn btn-outline-danger btn-sm" type="submit"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                        </div>
+                                    @endif
+                                    <div class="p-1 bd-highlight">
+                                        <form action="{{ route('report.cetak', $invoice->id) }}" method="GET"
+                                            target="_blank">
+                                            @csrf
+                                            <button class="btn btn-outline-warning btn-sm" type="submit"><i
+                                                    class="fa fa-print"></i></button>
+                                        </form>
                                     </div>
-                                </td>
+                                    <div class="p-1 bd-highlight">
+                                        <form action="{{ route('report.delete', $invoice->id) }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-outline-danger btn-sm" type="submit"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Pencarian Berdasar Waktu</h6>
-            </div>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('report.index') }}" method="get">
-                <div class="row">
-                    <div class="col">
-                        <input type="date" name="awal" required class="form-control mb-2">
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-sm mb-2">Tampilkan</button>
-                    </div>
-                    <div class="col">
-                        <input type="date" name="akhir" class="form-control mb-2">
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 @endsection
@@ -103,5 +83,14 @@
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                aaSorting: [
+                    [1, 'desc']
+                ],
+                bSort: true,
+            });
+        });
+    </script>
 @endsection

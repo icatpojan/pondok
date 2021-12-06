@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Warehouse extends Model
 {
-   protected $guarded = [];
-    public function produk()
+    protected $guarded = [];
+    public function product()
     {
-        return $this->hasMany('App\Models\Produk', 'warehouse_id', 'id');
+        return $this->hasMany('App\Models\Product', 'warehouse_id');
     }
     // public function detail()
     // {

@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('breadcrumb')
     <p class="mb-0 text-gray-800">
         <a href="{{ route('invoice.index') }}">Detail Info</a>/
@@ -17,8 +20,6 @@
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Customer info</h6>
-                <button data-toggle="modal" data-target="#tambahModal" class="btn btn-outline-primary btn-sm">Cari
-                    Customer</button>
             </div>
         </div>
         <form action="{{ route('customerInfostore') }}" method="post">
@@ -28,11 +29,11 @@
                     <div class="col">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" style="width: 140px" id="basic-addon1">Customer
+                                <span class="input-group-text" style="width: 140px; height: 30px" id="basic-addon1">Customer
                                     :</span>
                             </div>
-                            <select name="customer_id" id="customer" class="form-control">
-                                <option value="">== Select Customer ==</option>
+                            <select name="customer_id" id="customer" class="js-example-basic-single form-control">
+                                <option value="">== pilih user ==</option>
                                 @foreach ($Customer as $customer)
                                     <option {{ $Invoice->customer_id == $customer->id ? 'selected' : '' }}
                                         value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -47,6 +48,21 @@
                             </div>
                             <input type="number" value="{{ $Invoice->npwp }}" name="npwp" id="npwp" required
                                 class="form-control" placeholder="Masukkan Nomer NPWP">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width: 140px; height: 30px" id="basic-addon1">Ship
+                                    name Number:</span>
+                            </div>
+                            <select class="js-example-basic-single form-control haha" name="ship_id" id="ship_name">
+                                @foreach ($Ship as $ship)
+                                    <option value="">== pilih kapal ==</option>
+                                    <option {{ $Invoice->ship_id == $ship->id ? ' selected="selected"' : '' }}
+                                        value="{{ $ship->id }}">{{ $ship->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -72,9 +88,13 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
         $('#customer').on('change', function() {
             axios.post('{{ route('customer.show') }}', {
                     id: $(this).val()

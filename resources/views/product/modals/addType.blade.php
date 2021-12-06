@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahModalLabel">Add Type</h5>
+                <h5 class="modal-title" id="tambahModalLabel">Tambahkan Tipe</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,11 +12,11 @@
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <label for="1">Name</label>
+                        <label for="1">Nama</label>
                         <input required type="text" class="form-control" id="1" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="2">Category</label>
+                        <label for="2">Kategori</label>
                         <select name="category_id" id="14" class="form-control">
                             @foreach ($Category as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -24,17 +24,13 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="3">Price</label>
+                        <label for="3">Harga</label>
                         <input required type="number" class="form-control" id="3" name="price">
-                    </div>
-                    <div class="form-group">
-                        <label for="4">Stock</label>
-                        <input required type="number" class="form-control" id="4" name="stock">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
