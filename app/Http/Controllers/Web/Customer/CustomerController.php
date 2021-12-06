@@ -14,15 +14,17 @@ class CustomerController extends Controller
     public function index()
     {
         $Customer = Customer::all();
+        $Province = Province::all();
         $title = "Customer";
-        return view('customer.customer', compact('title', 'Customer'));
-    }
 
-    public function add()
-    {
-        $Province = Province::orderBy('province_name')->get();
-        $title = "Customer";
-        return view('customer.modals.addCustomer', compact('title', 'Province'));
+        $npwp = [];
+        foreach ($Customer as $cust) { // pecah npwp menjadi array
+            if ($cust->npwp) {
+                $npwp[$cust->id] = str_split($cust->npwp); // masukkan kedalam $npwp dengan key berdasarkan id Customer
+            }
+        }
+
+        return view('customer.customer', compact('title', 'Customer', 'Province', 'npwp'));
     }
 
     public function store(Request $request)
@@ -72,18 +74,6 @@ class CustomerController extends Controller
         return back();
     }
 
-    public function showing($id)
-    {
-        $Province = Province::all();
-        $Customer = Customer::find($id);
-        $City = City::orderBy('city_name', 'ASC')->where('province_id', $Customer->province_id)
-            ->get();
-        $Region = Region::orderBy('region_name', 'ASC')->where('city_id', $Customer->city_id)->get();
-
-        $title = "Customer edit";
-        return view('customer.modals.updateCustomer', compact('title', 'Customer', 'Province','City','Region'));
-    }
-
     public function show(Request $request)
     {
         $Customer = Customer::where('id', $request->id)->first();
@@ -92,7 +82,7 @@ class CustomerController extends Controller
 
     public function provincestore(Request $request)
     {
-        $cities = City::orderBy('city_name', 'ASC')->where('province_id', $request->get('id'))
+        $cities = City::where('province_id', $request->get('id'))
             ->pluck('city_name', 'city_id');
 
         return response()->json($cities);
@@ -100,7 +90,7 @@ class CustomerController extends Controller
 
     public function regionstore(Request $request)
     {
-        $regions = Region::orderBy('region_name', 'ASC')->where('city_id', $request->get('id'))->pluck('region_name', 'region_id');
+        $regions = Region::where('city_id', $request->get('id'))->pluck('region_name', 'region_id');
 
         return response()->json($regions);
     }
