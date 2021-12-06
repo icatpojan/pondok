@@ -113,3 +113,13 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script src="{{ url('public/vendor/jquery/inputmask.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#nomer_invoice').inputmask({
+                mask: '9999/*{3,5}/PIM/*{3}/9999'
+            })
+        });
+    </script>
+@endsection

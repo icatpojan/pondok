@@ -33,9 +33,9 @@ class InvoiceController extends Controller
             $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
             $noUrutAkhir = Invoice::max('id');
             if ($noUrutAkhir) {
-                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '/PIM/VMS/' . $bulanRomawi[date('n')] . '/' . date('Y');
             } else {
-                $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+                $Nomer = sprintf("%04s", 1) . '/PIM/VMS/' . $bulanRomawi[date('n')] . '/' . date('Y');
             }
             $Invoice = Invoice::create([
                 'invoice_no' => $Nomer,
@@ -81,9 +81,9 @@ class InvoiceController extends Controller
             $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
             $noUrutAkhir = Invoice::max('id');
             if ($noUrutAkhir) {
-                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '/VMS/PIM/' . $bulanRomawi[date('n')] . '/' . date('Y');
             } else {
-                $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+                $Nomer = sprintf("%04s", 1) . '/VMS/PIM/' . $bulanRomawi[date('n')] . '/' . date('Y');
             }
             $Invoice = Invoice::create([
                 'invoice_no' => $Nomer,
@@ -233,10 +233,10 @@ class InvoiceController extends Controller
         $noUrutAkhir = Invoice::max('id');
         $no = 1;
         if ($noUrutAkhir) {
-            $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . $AWAL . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+            $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '/' . $AWAL . '/PIM/' . $bulanRomawi[date('n')] . '-' . date('Y');
             return $this->sendResponse('Success', 'ini dia daftar nomernya bos', $Nomer, 200);
         } else {
-            $Nomer = sprintf("%04s", $no) . '-INV-PIM-' . $AWAL . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+            $Nomer = sprintf("%04s", $no) . '/' . $AWAL . '/PIM/' . $bulanRomawi[date('n')] . '-' . date('Y');
             return $this->sendResponse('Success', 'ini dia daftar nomernya bos', $Nomer, 200);
         }
     }

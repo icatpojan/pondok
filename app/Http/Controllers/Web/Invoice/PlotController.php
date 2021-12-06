@@ -22,9 +22,9 @@ class PlotController extends Controller
             $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
             $noUrutAkhir = Invoice::max('id');
             if ($noUrutAkhir) {
-                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+                $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '/VMS/PIM/' . $bulanRomawi[date('n')] . '/' . date('Y');
             } else {
-                $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+                $Nomer = sprintf("%04s", 1) . '/VMS/PIM/' . $bulanRomawi[date('n')] . '/' . date('Y');
             }
             $Invoice = Invoice::create([
                 'invoice_no' => $Nomer,
@@ -50,9 +50,9 @@ class PlotController extends Controller
         $bulanRomawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
         $noUrutAkhir = Invoice::max('id');
         if ($noUrutAkhir) {
-            $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+            $Nomer = sprintf("%04s", abs($noUrutAkhir + 1)) . '/VMS/PIM/' . $bulanRomawi[date('n')] . '/' . date('Y');
         } else {
-            $Nomer = sprintf("%04s", 1) . '-INV-PIM-' . 'VMS' . '-' . $bulanRomawi[date('n')] . '-' . date('Y');
+            $Nomer = sprintf("%04s", 1) . '/VMS/PIM/' . $bulanRomawi[date('n')] . '/' . date('Y');
         }
         if (!$Invoice) {
             $Invoice = Invoice::create([
