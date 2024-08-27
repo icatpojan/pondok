@@ -1,0 +1,30 @@
+<?php
+
+return [
+
+    'title' => 'I am england people',
+    'berita' => 'News',
+    'beranda' => 'Home',
+    'galeri' => 'Gallery',
+    'paket-tour' => 'Tour Package',
+    'event' => 'Event',
+    'destinasi' => 'Destination',
+    'masuk' => 'Login',
+    'destinasi-lain' => 'OTHER DESTINATION',
+    'paket-lain' => 'OTHER TOUR PACKAGE',
+    'acara-lain' => 'OTHER EVENT',
+    'berita-lain' => 'OTHER NEWS',
+    'lihat-detail' => 'See Details',
+    'hubungi-kami' => 'Contact Us',
+    'berita-populer' => 'Popular News',
+    'booking-sekarang' => 'Book a Tour Now',
+    'pembayaran' => 'Payment',
+    'profil-kawasan' => 'Area Profile',
+    'panduan-wisata' => 'Tour Guide',
+    'berita-menarik' => 'Interesting News',
+    'acara-menarik' => 'Interesting Event',
+    'testimoni' => 'Preview',
+    'kunjungi-kami' => 'Visit Us',
+    'anda-tidak-punya-akun' => "you don't have account?",
+    'anda-punya-akun' => "you have an account?",
+];

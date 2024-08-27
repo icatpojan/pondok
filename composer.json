@@ -20,7 +20,8 @@
         "realrashid/sweet-alert": "^4.1",
         "simplesoftwareio/simple-qrcode": "^1.0",
         "spatie/laravel-permission": "^5.4",
-        "tecnickcom/tcpdf": "^6.4"
+        "tecnickcom/tcpdf": "^6.4",
+        "intervention/image": "^2.7"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

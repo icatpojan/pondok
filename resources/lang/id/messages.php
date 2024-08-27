@@ -1,0 +1,30 @@
+<?php
+
+return [
+
+    'title' => 'gak bisa bahasa inggris',
+    'berita' => 'Berita',
+    'paket-tour' => 'Paket tour',
+    'beranda' => 'Beranda',
+    'galeri' => 'Galeri',
+    'event' => 'Acara',
+    'destinasi' => 'Destinasi',
+    'masuk' => 'Masuk',
+    'destinasi-lain' => 'DESTINASI LAINYA',
+    'paket-lain' => 'PAKET TOUR LAINYA',
+    'acara-lain' => 'ACARA LAINYA',
+    'berita-lain' => 'BERITA LAINYA',
+    'lihat-detail' => 'Lihat Detail',
+    'hubungi-kami' => 'Hubungi Kami',
+    'berita-populer' => 'Berita Populer',
+    'booking-sekarang' => 'Booking Sekarang',
+    'pembayaran' => 'Pembayaran',
+    'profil-kawasan' => 'Profil Kawasan',
+    'panduan-wisata' => 'Panduan Wisata',
+    'berita-menarik' => 'Berita Menarik',
+    'acara-menarik' => 'Acara Menarik',
+    'testimoni' => 'Testimoni',
+    'kunjungi-kami' => 'Kunjungi Kami',
+    'anda-tidak-punya-akun' => "kamu tidak punya akun?",
+    'anda-punya-akun' => "Sudah punya akun?",
+];

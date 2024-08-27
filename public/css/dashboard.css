@@ -1,0 +1,706 @@
+.sidebar-brand {
+  padding: 0 !important;
+  background: #FFFFFF;
+  overflow: hidden;
+}
+
+.sidebar-brand img {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.select2-selection {
+  height: calc(1.5em + .75rem + 2px) !important;
+}
+
+.select2-selection__rendered {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.select2-selection__arrow {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+#TableTugasGuru th,
+#TableKelas th,
+#TableTugasMurid  th,
+#TableMapel th,
+#TableMateri th,
+#TableUser th {
+  vertical-align: middle;
+  background: #4e73df;
+  color: #FFFFFF;
+}
+
+#TableCustomers th:nth-child(1),
+#TableCustomers td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableCustomers th:nth-child(2),
+#TableCustomers td:nth-child(2) {
+  width: 50%;
+}
+
+#TableCustomers th:nth-child(3),
+#TableCustomers td:nth-child(3) {
+  width: 30%;
+}
+
+#TableCustomers th:nth-child(4),
+#TableCustomers td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableShip td {
+  vertical-align: middle;
+}
+
+#TableShip th:nth-child(1),
+#TableShip td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableShip th:nth-child(2),
+#TableShip td:nth-child(2) {
+  width: 30%;
+}
+
+#TableShip th:nth-child(3),
+#TableShip td:nth-child(3) {
+  width: 30%;
+}
+
+#TableShip th:nth-child(4),
+#TableShip td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableShip th:nth-child(5),
+#TableShip td:nth-child(5) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableShip th:nth-child(6),
+#TableShip td:nth-child(6) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableProductCategory td {
+  vertical-align: middle;
+}
+
+#TableProductCategory th:nth-child(1),
+#TableProductCategory td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableProductCategory th:nth-child(2),
+#TableProductCategory td:nth-child(2) {
+  width: 80%;
+}
+
+#TableProductCategory th:nth-child(3),
+#TableProductCategory td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableType td {
+  vertical-align: middle;
+}
+
+#TableType th:nth-child(1),
+#TableType td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableType th:nth-child(2),
+#TableType td:nth-child(2) {
+  width: 80%;
+}
+
+#TableType th:nth-child(3),
+#TableType td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+#TablePO td {
+  vertical-align: middle;
+}
+
+#TablePO th:nth-child(1),
+#TablePO td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TablePO th:nth-child(2),
+#TablePO td:nth-child(2) {
+  width: 50%;
+}
+
+#TablePO th:nth-child(3),
+#TablePO td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+#TablePO th:nth-child(4),
+#TablePO td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TablePO th:nth-child(5),
+#TablePO td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TablePOProduct td {
+  vertical-align: middle;
+}
+
+#TablePOProduct th:nth-child(1),
+#TablePOProduct td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TablePOProduct th:nth-child(2),
+#TablePOProduct td:nth-child(2) {
+  width: 35%;
+}
+
+#TablePOProduct th:nth-child(3),
+#TablePOProduct td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+#TablePOProduct td:nth-child(3) input {
+  text-align: center;
+}
+
+#TablePOProduct th:nth-child(4),
+#TablePOProduct td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TablePOProduct td:nth-child(4) input {
+  text-align: right;
+  border: 0;
+}
+
+#TablePOProduct th:nth-child(5),
+#TablePOProduct td:nth-child(5) {
+  width: 25%;
+  text-align: center;
+}
+
+#TablePOProduct td:nth-child(5) input {
+  text-align: right;
+  border: 0;
+}
+
+#TablePOProduct th:nth-child(6),
+#TablePOProduct td:nth-child(6) {
+  width: 5%;
+  text-align: center;
+}
+
+#TablePOProduct td input {
+  background: none;
+}
+
+#TablePOResult tr,
+#TableInvoiceResult tr {
+  border-bottom: 1px solid #C0C0C0;
+}
+
+#TablePOResult td:first-child,
+#TableInvoiceResult td:first-child {
+  padding-top: 3px;
+  padding-right: 7.5px;
+  padding-bottom: 3px;
+  width: 50%;
+}
+
+#TablePOResult td:last-child,
+#TableInvoiceResult td:last-child {
+  padding-top: 3px;
+  padding-right: 7.5px;
+  padding-bottom: 3px;
+  width: 50%;
+  background: #F0F0F0;
+  text-align: right;
+}
+
+#TablePOResult td:last-child input,
+#TableInvoiceResult td:last-child input {
+  border: none;
+  text-align: right;
+  background: none;
+}
+
+#TableQC td {
+  vertical-align: middle;
+}
+
+#TableQC th:nth-child(1),
+#TableQC td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableQC th:nth-child(2),
+#TableQC td:nth-child(2) {
+  width: 20%;
+}
+
+#TableQC th:nth-child(3),
+#TableQC td:nth-child(3) {
+  width: 20%;
+}
+
+#TableQC th:nth-child(4),
+#TableQC td:nth-child(4) {
+  width: 20%;
+}
+
+#TableQC td:nth-child(4) input {
+  border: 0;
+  background: none;
+}
+
+#TableQC th:nth-child(5),
+#TableQC td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableQC th:nth-child(6),
+#TableQC td:nth-child(6) {
+  width: 15%;
+  text-align: center;
+}
+
+
+#TableUsers td {
+  vertical-align: middle;
+}
+
+#TableUsers th:nth-child(1),
+#TableUsers td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableUsers th:nth-child(2),
+#TableUsers td:nth-child(2) {
+  width: 30%;
+}
+
+#TableUsers th:nth-child(3),
+#TableUsers td:nth-child(3) {
+  width: 30%;
+}
+
+#TableUsers th:nth-child(4),
+#TableUsers td:nth-child(4) {
+  width: 20%;
+  text-align: center;
+}
+
+#TableUsers th:nth-child(5),
+#TableUsers td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableProducts td {
+  vertical-align: middle;
+}
+
+#TableProducts th:nth-child(1),
+#TableProducts td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableProducts th:nth-child(2),
+#TableProducts td:nth-child(2) {
+  width: 30%;
+}
+
+#TableProducts th:nth-child(3),
+#TableProducts td:nth-child(3) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableProducts th:nth-child(4),
+#TableProducts td:nth-child(4) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableProducts th:nth-child(5),
+#TableProducts td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableProducts th:nth-child(6),
+#TableProducts td:nth-child(6) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableProducts th:nth-child(7),
+#TableProducts td:nth-child(7) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableMutasi td {
+  vertical-align: middle;
+}
+
+#TableMutasi th:nth-child(1),
+#TableMutasi td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableMutasi th:nth-child(2),
+#TableMutasi td:nth-child(2) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableMutasi th:nth-child(3),
+#TableMutasi td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+
+#TableMutasi th:nth-child(4),
+#TableMutasi td:nth-child(4) {
+  width: 50%;
+  text-align: left;
+}
+
+#TableMutasi th:nth-child(5),
+#TableMutasi td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableMutasiProduct td {
+  vertical-align: middle;
+}
+
+#TableMutasiProduct th:nth-child(1),
+#TableMutasiProduct td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableMutasiProduct th:nth-child(2),
+#TableMutasiProduct td:nth-child(2) {
+  width: 20%;
+}
+
+#TableMutasiProduct th:nth-child(3),
+#TableMutasiProduct td:nth-child(3) {
+  width: 30%;
+}
+
+#TableMutasiProduct th:nth-child(4),
+#TableMutasiProduct td:nth-child(4) {
+  width: 17.5%;
+  text-align: center;
+}
+
+#TableMutasiProduct th:nth-child(5),
+#TableMutasiProduct td:nth-child(5) {
+  width: 17.5%;
+  text-align: center;
+}
+
+#TableMutasiProduct th:nth-child(6),
+#TableMutasiProduct td:nth-child(6) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableInvoiceProduct td {
+  vertical-align: middle;
+}
+
+#TableInvoiceProduct th:nth-child(1),
+#TableInvoiceProduct td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableInvoiceProduct th:nth-child(2),
+#TableInvoiceProduct td:nth-child(2) {
+  width: 25%;
+}
+
+#TableInvoiceProduct th:nth-child(3),
+#TableInvoiceProduct td:nth-child(3) {
+  width: 25%;
+}
+
+#TableInvoiceProduct th:nth-child(4),
+#TableInvoiceProduct td:nth-child(4) {
+  width: 25%;
+  text-align: center;
+}
+
+#TableInvoiceProduct th:nth-child(5),
+#TableInvoiceProduct td:nth-child(5) {
+  width: 12.5%;
+  text-align: center;
+}
+
+#TableInvoiceProduct th:nth-child(6),
+#TableInvoiceProduct td:nth-child(6) {
+  width: 7.5%;
+  text-align: center;
+}
+
+#TableInvoices td {
+  vertical-align: middle;
+}
+
+#TableInvoices th:nth-child(1),
+#TableInvoices td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableInvoices th:nth-child(2),
+#TableInvoices td:nth-child(2) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableInvoices th:nth-child(3),
+#TableInvoices td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableInvoices th:nth-child(4),
+#TableInvoices td:nth-child(4) {
+  width: 25%;
+}
+
+#TableInvoices th:nth-child(4),
+#TableInvoices td:nth-child(4) {
+  width: 25%;
+}
+
+#TableInvoices th:nth-child(6),
+#TableInvoices td:nth-child(6) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableCurrency td {
+  vertical-align: middle;
+}
+
+#TableCurrency th:nth-child(1),
+#TableCurrency td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableCurrency th:nth-child(2),
+#TableCurrency td:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+
+#TableCurrency th:nth-child(3),
+#TableCurrency td:nth-child(3) {
+  width: 40%;
+}
+
+#TableCurrency th:nth-child(3) {
+  text-align: center;
+}
+
+#TableCurrency td:nth-child(3) {
+  text-align: right;
+}
+
+#TableCurrency th:nth-child(4),
+#TableCurrency td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableItem td {
+  vertical-align: middle;
+}
+
+#TableItem th:nth-child(1),
+#TableItem td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableItem th:nth-child(2),
+#TableItem td:nth-child(2) {
+  width: 10%;
+  text-align: left;
+}
+
+#TableItem th:nth-child(3),
+#TableItem td:nth-child(3) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableItem th:nth-child(4),
+#TableItem td:nth-child(4) {
+  width: 20%;
+  text-align: center;
+}
+
+#TableItem th:nth-child(5),
+#TableItem td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableItemPrice td {
+  vertical-align: middle;
+}
+
+#TableItemPrice th:nth-child(1),
+#TableItemPrice td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableItemPrice th:nth-child(2),
+#TableItemPrice td:nth-child(2) {
+  width: 45%;
+  text-align: left;
+}
+
+#TableItemPrice th:nth-child(3),
+#TableItemPrice td:nth-child(3) {
+  width: 40%;
+}
+
+#TableItemPrice th:nth-child(3) {
+  text-align: center;
+}
+
+#TableItemPrice td:nth-child(3) {
+  text-align: right;
+}
+
+#TableItemPrice th:nth-child(4),
+#TableItemPrice td:nth-child(4) {
+  width: 10%;
+  text-align: center;
+}
+
+#TableAirtime td {
+  vertical-align: middle;
+}
+
+#TableAirtime th:nth-child(1),
+#TableAirtime td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableAirtime th:nth-child(2),
+#TableAirtime td:nth-child(2) {
+  width: 50%;
+  text-align: left;
+}
+
+#TableAirtime th:nth-child(3),
+#TableAirtime td:nth-child(3) {
+  width: 30%;
+}
+
+#TableAirtime th:nth-child(3) {
+  text-align: center;
+}
+
+#TableAirtime td:nth-child(3) {
+  text-align: right;
+}
+
+#TableAirtime th:nth-child(4),
+#TableAirtime td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableSupplier td {
+  vertical-align: middle;
+}
+
+#TableSupplier th:nth-child(1),
+#TableSupplier td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+
+#TableSupplier th:nth-child(2),
+#TableSupplier td:nth-child(2) {
+  width: 30%;
+}
+
+#TableSupplier th:nth-child(3),
+#TableSupplier td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+
+#TableSupplier th:nth-child(4),
+#TableSupplier td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableSupplier th:nth-child(5),
+#TableSupplier td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#TableSupplier th:nth-child(6),
+#TableSupplier td:nth-child(6) {
+  width: 15%;
+  text-align: center;
+}

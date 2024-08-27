@@ -23,33 +23,23 @@ class RoleSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $admin_permissions = [
-            'crud category',
-            'crud type',
-            'crud history',
-            'crud report',
-            'crud finance',
-            'crud komisi',
-            'crud voucer',
             'crud role',
             'crud permission',
-            'crud gaji',
-            'crud product',
-            'crud absen',
         ];
 
-        $pengurus_permissions = [
+        $guru_permissions = [
             'crud user',
             'crud service',
             'crud order',
         ];
 
-        $operator_permissions = [
+        $murid_permissions = [
         'crud user',
         'crud service',
         'crud order',
         ];
 
-        $permissions = collect($pengurus_permissions)
+        $permissions = collect($guru_permissions)
             ->merge($admin_permissions)
             ->all();
 
@@ -64,13 +54,13 @@ class RoleSeeder extends Seeder
         ])->givePermissionTo(Permission::all());
 
         Role::create([
-            'name' => 'pengurus',
+            'name' => 'guru',
             'guard_name' => 'web'
-        ])->givePermissionTo($pengurus_permissions);
+        ])->givePermissionTo($guru_permissions);
 
         Role::create([
-            'name' => 'operator',
+            'name' => 'murid',
             'guard_name' => 'web'
-        ])->givePermissionTo($operator_permissions);
+        ])->givePermissionTo($murid_permissions);
     }
 }
