@@ -244,7 +244,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Guru</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Data Staff guru pengajar SMP Negeri 5 Tarano</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -289,7 +289,7 @@
             <div class="team-member d-flex align-items-start">
               <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>William Anderson</h4>
+                <h4>Kamarudin tuankotta</h4>
                 <span>CTO</span>
                 <p>Sosial Media :</p>
                 <div class="social">
