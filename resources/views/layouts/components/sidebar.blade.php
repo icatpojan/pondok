@@ -1,60 +1,72 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion shadow" style="background: white;" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
-        {{-- <img width="50%" height="" src="{{ asset('img/logo-aja.png') }}"> --}}
+        <img width="50%" height="" src="{{ asset('img/logo-tulis.png') }}">
     </a>
 
     <!-- Nav Item - Dashboard -->
+    <style>
+        .nav-link:hover {
+            background: #38CC1A;
+            border-radius: 5px;
+            color: white !important;
+        }
+
+        .nav-link:hover span {
+            color: white !important;
+        }
+        .nav-link:hover i {
+            color: white !important;
+        }
+    </style>
     <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <a class="nav-link" style="color: black" href="{{ route('home') }}">
+            <i style="color: black" class="fas fa-home"></i>
             <span>Dashboard</span>
         </a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
     @if (auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('user') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('user') }}">
-                <i class="fas fa-users"></i>
+            <a class="nav-link" style="color: black" href="{{ route('user') }}">
+                <i style="color: black" class="fas fa-users"></i>
                 <span>User</span>
             </a>
         </li>
         <li class="nav-item {{ request()->is('kelas') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('kelas') }}">
-                <i class="fas fa-school"></i>
+            <a class="nav-link" style="color: black" href="{{ route('kelas') }}">
+                <i style="color: black" class="fas fa-school"></i>
                 <span>Kelas</span>
             </a>
         </li>
 
         <li class="nav-item {{ request()->is('mapel') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('mapel') }}">
-                <i class="fas fa-book"></i>
+            <a class="nav-link" style="color: black" href="{{ route('mapel') }}">
+                <i style="color: black" class="fas fa-book"></i>
                 <span>Mapel</span>
             </a>
         </li>
 
         <li class="nav-item {{ request()->is('mapelkelas') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('mapelkelas') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
+            <a class="nav-link" style="color: black" href="{{ route('mapelkelas') }}">
+                <i style="color: black" class="fas fa-chalkboard-teacher"></i>
                 <span>Mapel Kelas</span>
             </a>
         </li>
     @endif
     @if (auth()->user()->hasRole('guru') || auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('materi') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('materi') }}">
-                <i class="fas fa-file-alt"></i>
+            <a class="nav-link" style="color: black" href="{{ route('materi') }}">
+                <i style="color: black" class="fas fa-file-alt"></i>
                 <span>Materi</span>
             </a>
         </li>
 
 
         <li class="nav-item {{ request()->is('tugasguru') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('tugasguru') }}">
-                <i class="fas fa-tasks"></i>
+            <a class="nav-link" style="color: black" href="{{ route('tugasguru') }}">
+                <i style="color: black" class="fas fa-tasks"></i>
                 <span>
                     Tugas
                     @role('admin')
@@ -67,8 +79,8 @@
 
     @if (auth()->user()->hasRole('murid') || auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('tugasmurid') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('tugasmurid') }}">
-                <i class="fas fa-file-signature"></i>
+            <a class="nav-link" style="color: black" href="{{ route('tugasmurid') }}">
+                <i style="color: black" class="fas fa-file-signature"></i>
                 <span>
                     Tugas
                     @role('admin')

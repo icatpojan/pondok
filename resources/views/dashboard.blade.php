@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('css')
-    {{-- <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> --}}
+    {{-- <h1 class="h3 mb-0 text-white">Dashboard</h1> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.min.css">
 @endsection
 @section('content')
@@ -8,54 +8,54 @@
         @role('admin')
             <div class="row">
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="w-100 card border-left-primary shadow h-100 py-2">
+                    <div style="background: #38CC1A" class="w-100 card  shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Murid
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $Guru }}</div>
+                                    <i class="fas fa-users fa-2x text-white"></i>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                <div class="col auto">
+                                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Jumlah Murid
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-white">{{ $Guru }}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="w-100 card border-left-info shadow h-100 py-2 text-left text-start">
+                    <div style="background: #38CC1A" class="w-100 card shadow h-100 py-2 text-left text-start">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Guru</div>
+                                    <i class="fas fa-users fa-2x text-white"></i>
+                                </div>
+                                <div class="col auto">
+                                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Jumlah Guru</div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $Murid }}</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-white">{{ $Murid }}</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="w-100 card border-left-info shadow h-100 py-2 text-left text-start">
+                    <div style="background: #38CC1A" class="w-100 card shadow h-100 py-2 text-left text-start">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Mapel</div>
+                                    <i class="fas fa-users fa-2x text-white"></i>
+                                </div>
+                                <div class="col auto">
+                                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Jumlah Mapel</div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $Mapel }}</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-white">{{ $Mapel }}</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
