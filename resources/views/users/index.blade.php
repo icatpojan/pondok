@@ -1,14 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card shadow mb-4" id="ListUser">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">User</h6>
-                <!-- Button trigger modal for adding user -->
+    <form action="{{ route('user') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-3">
+                <select class="form-control" name="role">
+                    <option value="">Pilih Role</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->name }}" {{ request('role') == $role->name ? 'selected' : '' }}>
+                            {{ $role->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" name="kelas">
+                    <option value="">Pilih Kelas</option>
+                    @foreach ($kelas as $kls)
+                        <option value="{{ $kls->id }}" {{ request('kelas') == $kls->id ? 'selected' : '' }}>
+                            {{ $kls->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" name="search" placeholder="Cari username atau nama"
+                    value="{{ request('search') }}">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="{{ route('user') }}" class="btn btn-secondary">Reset</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
+                    Tambah User
+                </button>
             </div>
         </div>
-
+    </form>
+    <div class="card shadow mb-4" id="ListUser">
         <!-- Create User Modal -->
         <div class="modal fade" id="createUserModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="createUserModalLabel" aria-hidden="true">
@@ -75,50 +103,15 @@
             </div>
         </div>
 
-        <div class="card-body">
 
-            <form action="{{ route('user') }}" method="GET" class="mb-4">
-                <div class="row">
-                    <div class="col-md-3">
-                        <select class="form-control" name="role">
-                            <option value="">Pilih Role</option>
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->name }}" {{ request('role') == $role->name ? 'selected' : '' }}>
-                                    {{ $role->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control" name="kelas">
-                            <option value="">Pilih Kelas</option>
-                            @foreach ($kelas as $kls)
-                                <option value="{{ $kls->id }}" {{ request('kelas') == $kls->id ? 'selected' : '' }}>
-                                    {{ $kls->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" name="search" placeholder="Cari username atau nama"
-                            value="{{ request('search') }}">
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Filter</button>
-                        <a href="{{ route('user') }}" class="btn btn-secondary">Reset</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
-                            Tambah User
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <div class="">
 
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
             <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="TableUser">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
