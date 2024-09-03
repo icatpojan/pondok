@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{{ asset('img/logo-aja.png') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SMP Negeri 5 Tarano</title>
     <style>
@@ -21,95 +22,95 @@
         overflow: hidden;
     }
 
-    .login-container { 
+    .login-container {
         background-image: url('/assets/img/baground_login.png');
         background-size: cover; /* Sesuaikan ukuran gambar */
         background-position: center; /* Posisikan gambar di tengah */
-        display: flex; 
-        flex-direction: column; 
-        overflow: hidden; 
-        width: 100%; 
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: 100%;
         min-height: 100vh; /* Mengisi seluruh tinggi viewport */
     }
 
-    .login-content { 
-        display: flex; 
-        padding: 40px; 
-        gap: 20px; 
+    .login-content {
+        display: flex;
+        padding: 40px;
+        gap: 20px;
         flex: 1; /* Mengisi ruang yang tersedia */
     }
 
-    .school-info { 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center; 
-        color: #fff; 
-        text-align: center; 
-        font: 700 35px/1.2 Montserrat, sans-serif; 
-        width: 50%; 
+    .school-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        font: 700 35px/1.2 Montserrat, sans-serif;
+        width: 50%;
     }
 
-    .school-logo { 
-        aspect-ratio: 0.89; 
-        object-fit: contain; 
-        width: 243px; 
-        max-width: 100%; 
+    .school-logo {
+        aspect-ratio: 0.89;
+        object-fit: contain;
+        width: 243px;
+        max-width: 100%;
     }
 
-    .school-name { 
+    .school-name {
         font-size: 35px;
-        margin-top: 20px; 
+        margin-top: 20px;
     }
 
-    .login-form-container { 
-        width: 50%; 
+    .login-form-container {
+        width: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .login-form { 
-        border-radius: 6px; 
-        background-color: #fff; 
-        display: flex; 
-        flex-direction: column; 
-        font-family: Montserrat, sans-serif; 
-        color: #000; 
-        font-weight: 600; 
-        text-align: center; 
+    .login-form {
+        border-radius: 6px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        font-family: Montserrat, sans-serif;
+        color: #000;
+        font-weight: 600;
+        text-align: center;
         padding: 40px; /* Mengatur padding untuk responsivitas */
         width: 100%;
         max-width: 500px;
     }
 
-    .login-title { 
-        font-size: 30px; 
-        margin-bottom: 20px; 
+    .login-title {
+        font-size: 30px;
+        margin-bottom: 20px;
     }
 
-    .form-group { 
-        display: flex; 
-        flex-direction: column; 
-        align-items: stretch; 
-        margin-bottom: 20px; 
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 20px;
     }
 
-    .form-label { 
-        align-self: stretch; 
-        text-align: left; 
+    .form-label {
+        align-self: stretch;
+        text-align: left;
         padding-bottom: 10px; /* Mengatur padding untuk tampilan rapi */
-        font-size: 18px; 
+        font-size: 18px;
     }
 
-    .form-input { 
-        align-self: stretch; 
-        border-radius: 6px; 
-        background-color: #f5f5f5; 
-        width: 100%; 
+    .form-input {
+        align-self: stretch;
+        border-radius: 6px;
+        background-color: #f5f5f5;
+        width: 100%;
         font-size: 16px; /* Ukuran font yang nyaman */
-        color: rgba(0, 0, 0, 0.7); 
-        padding: 10px 15px; 
+        color: rgba(0, 0, 0, 0.7);
+        padding: 10px 15px;
         border: 1px solid #ccc; /* Tambahkan border */
         transition: border-color 0.3s;
     }
@@ -119,33 +120,33 @@
         outline: none;
     }
 
-    .submit-button { 
-        align-self: stretch; 
-        border-radius: 6px; 
-        background-color: #37cc1a; 
-        width: 100%; 
-        font-size: 18px; 
-        color: #fff; 
-        padding: 10px 15px; 
-        border: none; 
-        cursor: pointer; 
+    .submit-button {
+        align-self: stretch;
+        border-radius: 6px;
+        background-color: #37cc1a;
+        width: 100%;
+        font-size: 18px;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
         transition: background-color 0.3s;
     }
 
-    .submit-button:hover { 
-        background-color: #2da414; 
+    .submit-button:hover {
+        background-color: #2da414;
     }
 
-    .visually-hidden { 
-        position: absolute; 
-        width: 1px; 
-        height: 1px; 
-        padding: 0; 
-        margin: -1px; 
-        overflow: hidden; 
-        clip: rect(0, 0, 0, 0); 
-        white-space: nowrap; 
-        border: 0; 
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
     }
 
     .error-message {
@@ -157,17 +158,17 @@
     }
 
     @media (max-width: 991px) {
-        .login-content { 
-            flex-direction: column; 
-            padding: 20px; 
+        .login-content {
+            flex-direction: column;
+            padding: 20px;
         }
 
-        .school-info, .login-form-container { 
-            width: 100%; 
+        .school-info, .login-form-container {
+            width: 100%;
         }
 
-        .login-form { 
-            padding: 20px; 
+        .login-form {
+            padding: 20px;
         }
     }
     </style>

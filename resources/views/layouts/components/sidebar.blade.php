@@ -9,7 +9,8 @@
     <style>
         .nav-link:hover {
             background: #38CC1A;
-            border-radius: 5px;
+            border-radius: 25px;
+            border: 15px solid white !important;
             color: white !important;
         }
 
@@ -21,7 +22,7 @@
         }
     </style>
     <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
-        <a class="nav-link" style="color: black" href="{{ route('home') }}">
+        <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('home') }}">
             <i style="color: black" class="fas fa-home"></i>
             <span>Dashboard</span>
         </a>
@@ -29,27 +30,27 @@
 
     @if (auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('user') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('user') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('user') }}">
                 <i style="color: black" class="fas fa-users"></i>
                 <span>User</span>
             </a>
         </li>
         <li class="nav-item {{ request()->is('kelas') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('kelas') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('kelas') }}">
                 <i style="color: black" class="fas fa-school"></i>
                 <span>Kelas</span>
             </a>
         </li>
 
         <li class="nav-item {{ request()->is('mapel') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('mapel') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('mapel') }}">
                 <i style="color: black" class="fas fa-book"></i>
                 <span>Mapel</span>
             </a>
         </li>
 
         <li class="nav-item {{ request()->is('mapelkelas') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('mapelkelas') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('mapelkelas') }}">
                 <i style="color: black" class="fas fa-chalkboard-teacher"></i>
                 <span>Mapel Kelas</span>
             </a>
@@ -57,7 +58,7 @@
     @endif
     @if (auth()->user()->hasRole('guru') || auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('materi') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('materi') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('materi') }}">
                 <i style="color: black" class="fas fa-file-alt"></i>
                 <span>Materi</span>
             </a>
@@ -65,7 +66,7 @@
 
 
         <li class="nav-item {{ request()->is('tugasguru') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('tugasguru') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('tugasguru') }}">
                 <i style="color: black" class="fas fa-tasks"></i>
                 <span>
                     Tugas
@@ -79,7 +80,7 @@
 
     @if (auth()->user()->hasRole('murid') || auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('tugasmurid') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black" href="{{ route('tugasmurid') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('tugasmurid') }}">
                 <i style="color: black" class="fas fa-file-signature"></i>
                 <span>
                     Tugas
