@@ -21,7 +21,7 @@
                                 <input type="text" class="form-control bg-light border-0 small"
                                     placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
+                                    <button class="btn btn-success" type="button">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
                                 </div>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Change</button>
+                        <button type="submit" class="btn btn-success">Change</button>
                     </div>
                 </form>
             </div>

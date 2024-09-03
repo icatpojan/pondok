@@ -28,9 +28,9 @@
                     value="{{ request('search') }}">
             </div>
             <div class="col-md-3">
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="submit" class="btn btn-success">Filter</button>
                 <a href="{{ route('user') }}" class="btn btn-secondary">Reset</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUserModal">
                     Tambah User
                 </button>
             </div>
@@ -55,6 +55,14 @@
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="{{ old('name') }}" required>
                             </div>
+
+
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Jabatan</label>
+                                <input type="text" class="form-control" id="jabatan" name="jabatan"
+                                    value="{{ old('jabatan') }}" required value="murid">
+                            </div>
+
                             <div class="mb-3">
                                 <label for="role" class="form-label">Role</label>
                                 <select class="form-control" id="role" name="role" required>
@@ -63,6 +71,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
 
                             <div class="mb-3" id="kelas-container" style="display: none;">
                                 <label for="kelas" class="form-label">Kelas</label>
@@ -96,7 +105,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -107,7 +116,7 @@
         <div class="">
 
             @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success mb-22">{{ session('success') }}</div>
             @endif
 
             <div class="table-responsive">
@@ -138,7 +147,7 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                         data-target="#editUserModal-{{ $user->id }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
@@ -157,6 +166,11 @@
                                                             <label class="form-label">Username</label>
                                                             <input type="text" class="form-control" name="username"
                                                                 value="{{ $user->username }}" required>
+                                                        </div>
+                                                         <div class="mb-3">
+                                                            <label class="form-label">Jabatan</label>
+                                                            <input type="text" class="form-control" name="jabatan"
+                                                                value="{{ $user->jabatan }}" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="role" class="form-label">Role</label>
@@ -196,7 +210,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                        <button type="submit" class="btn btn-success">Update</button>
                                                     </div>
                                                 </form>
                                             </div>

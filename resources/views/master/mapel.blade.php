@@ -1,19 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#createMapelModal">
+        Tambah Mapel
+    </button>
     <div class="card shadow mb-4" id="ListMapel">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Mapel</h6>
-                <!-- Button trigger modal for adding mapel -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMapelModal">
-                    Tambah Mapel
-                </button>
-            </div>
-        </div>
 
         <!-- Create Mapel Modal -->
-        <div class="modal fade" id="createMapelModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="createMapelModalLabel" aria-hidden="true">
+        <div class="modal fade" id="createMapelModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="createMapelModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="{{ route('mapel.store') }}" method="POST">
@@ -27,7 +22,8 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{ old('name') }}" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -39,13 +35,13 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="">
             @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success mb-2">{{ session('success') }}</div>
             @endif
 
             <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="TableMapel">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -59,19 +55,24 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $mapelItem->name }}</td>
                                 <td>
-                                    <form action="{{ route('mapel.destroy', $mapelItem->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('mapel.destroy', $mapelItem->id) }}" method="POST"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this class?')">
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this class?')">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editMapelModal-{{ $mapelItem->id }}">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#editMapelModal-{{ $mapelItem->id }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
 
                                     <!-- Edit Mapel Modal -->
-                                    <div class="modal fade" id="editMapelModal-{{ $mapelItem->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="editMapelModalLabel-{{ $mapelItem->id }}" aria-hidden="true">
+                                    <div class="modal fade" id="editMapelModal-{{ $mapelItem->id }}" data-backdrop="static"
+                                        data-keyboard="false" tabindex="-1"
+                                        aria-labelledby="editMapelModalLabel-{{ $mapelItem->id }}" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <form action="{{ route('mapel.update', $mapelItem->id) }}" method="POST">
@@ -80,11 +81,13 @@
                                                     <div class="modal-body">
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label">Name</label>
-                                                            <input type="text" class="form-control" id="name" name="name" value="{{ $mapelItem->name }}" required>
+                                                            <input type="text" class="form-control" id="name"
+                                                                name="name" value="{{ $mapelItem->name }}" required>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Update</button>
                                                     </div>
                                                 </form>

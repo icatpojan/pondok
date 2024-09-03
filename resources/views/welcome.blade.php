@@ -154,141 +154,30 @@
 
                     <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                         <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-app">Kegitan</li>
-                        <li data-filter=".filter-product">Sekolah</li>
-                        <li data-filter=".filter-branding">Lomba</li>
+                        <li data-filter=".kegiatan">Kegiatan</li>
+                        <li data-filter=".sekolah">Sekolah</li>
+                        <li data-filter=".lomba">Lomba</li>
                     </ul><!-- End Portfolio Filters -->
 
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                        @foreach ($media as $item)
+                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ $item->type }}">
+                                <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid" alt="{{ $item->type }}">
+                                <div class="portfolio-info">
+                                    <h4>{{ $item->type }}</h4>
+                                    <p>{{ $item->deskripsi }}</p>
+                                    <a href="{{ asset($item->image) }}" title="{{ $item->type }}"
+                                        data-gallery="portfolio-gallery-{{ $item->type }}"
+                                        class="glightbox preview-link">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </a>
+                                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                                        <i class="bi bi-link-45deg"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 1</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 1</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>App 2</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 2</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 2</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>App 3</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="App 3"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 3</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid"
-                                alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 3</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                    </div><!-- End Portfolio Container -->
-
+                        @endforeach
+                    </div>
                 </div>
 
             </div>
@@ -308,78 +197,30 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>Drs. Muhammad Yusuf</h4>
-                                <span>Kepala Sekolah</span>
-                                <p>Sosial Media :</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    @foreach ($guru as $key => $value)
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member d-flex align-items-start">
+                                @if ($value->image)
+                                    <div class="pic"><img src="{{ asset('storage/' . $value->image) }}"
+                                            class="img-fluid" alt=""></div>
+                                @else
+                                    <div class="pic"><img src="{{ asset('img/undraw_profile_2.svg') }}"
+                                            class="img-fluid" alt=""></div>
+                                @endif
+                                <div class="member-info">
+                                    <h4>{{ $value->username }}</h4>
+                                    <span>{{ $value->jabatan }}</span>
+                                    <p>Sosial Media :</p>
+                                    <div class="social">
+                                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                                        <a href=""><i class="bi bi-facebook"></i></a>
+                                        <a href=""><i class="bi bi-instagram"></i></a>
+                                        <a href=""> <i class="bi bi-linkedin"></i> </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>Irwansyah</h4>
-                                <span>Tenaga Usaha</span>
-                                <p>Sosial Media :</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>Kamarudin tuankotta</h4>
-                                <span>CTO</span>
-                                <p>Sosial Media :</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
-                                <p>Sosial Media :</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
+                    @endforeach
                 </div>
 
             </div>
@@ -423,10 +264,6 @@
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Arsha</strong> <span>All Rights Reserved</span>
             </p>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
                 Designed by <b>BootstrapMade</b>
             </div>
         </div>

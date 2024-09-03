@@ -1,4 +1,5 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion shadow" style="background: white;" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion shadow" style="background: white;"
+    id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
@@ -10,13 +11,16 @@
         .nav-link:hover {
             background: #38CC1A;
             border-radius: 25px;
-            border: 15px solid white !important;
+            border-left: 15px solid white !important;
+            border-right: 15px solid white !important;
             color: white !important;
         }
+
 
         .nav-link:hover span {
             color: white !important;
         }
+
         .nav-link:hover i {
             color: white !important;
         }
@@ -29,6 +33,12 @@
     </li>
 
     @if (auth()->user()->hasRole('admin'))
+        <li class="nav-item {{ request()->is('media') ? 'active' : '' }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('media') }}">
+                <i style="color: black" class="fas fa-book"></i>
+                <span>Media</span>
+            </a>
+        </li>
         <li class="nav-item {{ request()->is('user') ? 'active' : '' }}">
             <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('user') }}">
                 <i style="color: black" class="fas fa-users"></i>
@@ -50,7 +60,8 @@
         </li>
 
         <li class="nav-item {{ request()->is('mapelkelas') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('mapelkelas') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;"
+                href="{{ route('mapelkelas') }}">
                 <i style="color: black" class="fas fa-chalkboard-teacher"></i>
                 <span>Mapel Kelas</span>
             </a>
@@ -66,7 +77,8 @@
 
 
         <li class="nav-item {{ request()->is('tugasguru') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('tugasguru') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;"
+                href="{{ route('tugasguru') }}">
                 <i style="color: black" class="fas fa-tasks"></i>
                 <span>
                     Tugas
@@ -80,7 +92,8 @@
 
     @if (auth()->user()->hasRole('murid') || auth()->user()->hasRole('admin'))
         <li class="nav-item {{ request()->is('tugasmurid') ? 'active' : '' }}">
-            <a class="nav-link" style="color: black;border: 15px solid white !important;" href="{{ route('tugasmurid') }}">
+            <a class="nav-link" style="color: black;border: 15px solid white !important;"
+                href="{{ route('tugasmurid') }}">
                 <i style="color: black" class="fas fa-file-signature"></i>
                 <span>
                     Tugas

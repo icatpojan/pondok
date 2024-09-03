@@ -1,5 +1,7 @@
 <?php
 
+use App\Media;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -7,7 +9,9 @@ Route::get('/', function () {
     if (auth()->user()) {
         return redirect('/dashboard');
     } else {
-        return view('welcome');
+        $guru = User::role('guru')->paginate(4);
+        $media = Media::paginate(9);
+        return view('welcome',compact('guru', 'media'));
     }
 })->name('welcome');
 Route::get('/login', function () {
@@ -30,6 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user', 'UserController@store')->name('user.store');
     Route::delete('/user/delete/{id}', 'UserController@destroy')->name('user.destroy');
     Route::put('/user/update/{id}', 'UserController@update')->name('user.update');
+
+    Route::get('/media', 'MediaController@index')->name('media');
+    Route::post('/media', 'MediaController@store')->name('media.store');
+    Route::delete('/media/delete/{id}', 'MediaController@destroy')->name('media.destroy');
 
     // Rute untuk Kelas
     Route::get('/kelas', 'KelasController@index')->name('kelas');

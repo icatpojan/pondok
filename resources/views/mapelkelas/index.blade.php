@@ -1,14 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card shadow mb-4" id="ListMapel">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Mapel</h6>
-                <!-- Button trigger modal for adding mapelkelas -->
-
+    <form action="{{ route('mapelkelas') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-3">
+                <select class="form-control" name="user">
+                    <option value="">Pilih Guru</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" {{ request('user') == $user->id ? 'selected' : '' }}>
+                            {{ $user->username }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" name="kelas">
+                    <option value="">Pilih Kelas</option>
+                    @foreach ($kelass as $kls)
+                        <option value="{{ $kls->id }}" {{ request('kelas') == $kls->id ? 'selected' : '' }}>
+                            {{ $kls->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" name="mapel">
+                    <option value="">Pilih Mapel</option>
+                    @foreach ($mapels as $mapel)
+                        <option value="{{ $mapel->id }}" {{ request('mapel') == $mapel->id ? 'selected' : '' }}>
+                            {{ $mapel->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success">Filter</button>
+                <a href="{{ route('mapelkelas') }}" class="btn btn-secondary">Reset</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createMapelModal">
+                    + Mapel
+                </button>
             </div>
         </div>
+    </form>
+    <div class="card shadow mb-4" id="ListMapel">
 
         <!-- Create Mapel Modal -->
         <div class="modal fade" id="createMapelModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -48,62 +82,22 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
 
-            <form action="{{ route('mapelkelas') }}" method="GET" class="mb-4">
-                <div class="row">
-                    <div class="col-md-3">
-                        <select class="form-control" name="user">
-                            <option value="">Pilih Guru</option>
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}" {{ request('user') == $user->id ? 'selected' : '' }}>
-                                    {{ $user->username }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control" name="kelas">
-                            <option value="">Pilih Kelas</option>
-                            @foreach ($kelass as $kls)
-                                <option value="{{ $kls->id }}" {{ request('kelas') == $kls->id ? 'selected' : '' }}>
-                                    {{ $kls->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control" name="mapel">
-                            <option value="">Pilih Mapel</option>
-                            @foreach ($mapels as $mapel)
-                                <option value="{{ $mapel->id }}" {{ request('mapel') == $mapel->id ? 'selected' : '' }}>
-                                    {{ $mapel->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Filter</button>
-                        <a href="{{ route('mapelkelas') }}" class="btn btn-secondary">Reset</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMapelModal">
-                            + Mapel
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <div class="">
+
             @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success mb-2">{{ session('success') }}</div>
             @endif
 
             <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="TableMapel">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -130,7 +124,7 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                         data-target="#editMapelModal-{{ $mapelkelasItem->id }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
@@ -191,7 +185,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                        <button type="submit" class="btn btn-success">Update</button>
                                                     </div>
                                                 </form>
 

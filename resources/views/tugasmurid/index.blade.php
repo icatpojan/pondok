@@ -2,22 +2,13 @@
 
 @section('content')
     <div class="card shadow mb-4" id="ListTugasMurid">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">List Tugas @role('admin')
-                        Murid
-                    @endrole
-                </h6>
-            </div>
-        </div>
-
-        <div class="card-body">
+        <div class="">
             @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success mb-2">{{ session('success') }}</div>
             @endif
 
             <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="TableTugasMurid">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Mapel</th>
@@ -31,7 +22,7 @@
                     <tbody>
                         @foreach ($mapelkelass as $mapel)
                             @if (!$mapel->status)
-                                <tr class="table-primary">
+                                <tr class="table-success">
                                 @else
                                 <tr class="table-danger ">
                             @endif
@@ -41,7 +32,7 @@
                             @endrole
                             <td>{{ $mapel->user->username }}</td>
                             <td>
-                                <a href="{{ route('tugasmurid.show', $mapel->id) }}" class="btn btn-primary btn-sm"><i
+                                <a href="{{ route('tugasmurid.show', $mapel->id) }}" class="btn btn-success btn-sm"><i
                                         class="fa fa-eye"></i></a>
                             </td>
                             </tr>

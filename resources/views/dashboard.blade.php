@@ -65,11 +65,8 @@
         @endrole
         @if (auth()->user()->hasRole(['guru', 'murid']))
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card shadow-sm">
-                        <div class="card-header text-center bg-primary text-white">
-                            <h4>Update Profile</h4>
-                        </div>
                         <div class="card-body">
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf

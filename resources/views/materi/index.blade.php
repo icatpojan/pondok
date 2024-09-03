@@ -1,14 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card shadow mb-4" id="ListMateri">
-        <div class="card-header py-3">
-            <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Materi</h6>
-                <!-- Button trigger modal for adding materi -->
-
+    <form action="{{ route('materi') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-9">
+                <select class="form-control" name="mapelkelas">
+                    <option value="">Pilih Mapel Kelas</option>
+                    @foreach ($mapelkelass as $mapelkelas)
+                        <option value="{{ $mapelkelas->id }}"
+                            {{ request('mapelkelas') == $mapelkelas->id ? 'selected' : '' }}>
+                            {{ $mapelkelas->mapel->name . '-' . $mapelkelas->kelas->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success">Filter</button>
+                <a href="{{ route('materi') }}" class="btn btn-secondary">Reset</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createMateriModal">
+                    + Materi
+                </button>
             </div>
         </div>
+    </form>
+    <div class="card shadow mb-4 mt-2" id="ListMateri">
 
         <!-- Create Materi Modal -->
         <div class="modal fade" id="createMateriModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -44,7 +59,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
 
@@ -52,35 +67,14 @@
             </div>
         </div>
 
-        <div class="card-body">
-            <form action="{{ route('materi') }}" method="GET" class="mb-4">
-                <div class="row">
-                    <div class="col-md-9">
-                        <select class="form-control" name="mapelkelas">
-                            <option value="">Pilih Mapel Kelas</option>
-                            @foreach ($mapelkelass as $mapelkelas)
-                                <option value="{{ $mapelkelas->id }}"
-                                    {{ request('mapelkelas') == $mapelkelas->id ? 'selected' : '' }}>
-                                    {{ $mapelkelas->mapel->name . '-' . $mapelkelas->kelas->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Filter</button>
-                        <a href="{{ route('materi') }}" class="btn btn-secondary">Reset</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMateriModal">
-                            + Materi
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <div class="">
+
             @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success mb-2">{{ session('success') }}</div>
             @endif
 
             <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="TableMateri">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -112,7 +106,7 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                         data-target="#editMateriModal-{{ $materiItem->id }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
@@ -123,8 +117,8 @@
                                         aria-labelledby="editMateriModalLabel-{{ $materiItem->id }}" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form action="{{ route('materi.update', $materiItem->id) }}"
-                                                    method="POST" enctype="multipart/form-data">
+                                                <form action="{{ route('materi.update', $materiItem->id) }}" method="POST"
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-body">
@@ -159,7 +153,7 @@
                                                             <div class="mb-3">
                                                                 <label for="file" class="form-label">
                                                                     File Saat ini</label>
-                                                                <a class="btn btn-sm btn-primary w-100 mt-2"
+                                                                <a class="btn btn-sm btn-success w-100 mt-2"
                                                                     href="{{ asset('storage/' . $materiItem->file) }}"
                                                                     target="_blank">
                                                                     lihat
@@ -170,7 +164,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                        <button type="submit" class="btn btn-success">Update</button>
                                                     </div>
                                                 </form>
 
